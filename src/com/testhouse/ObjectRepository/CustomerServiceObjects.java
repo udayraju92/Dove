@@ -26,6 +26,7 @@ public class CustomerServiceObjects
 		return brandSelect;
 	}
 
+	
 	public By fastFoward = By.xpath("//div/table/tbody/tr/td[10]");
 	public By newSubscription = By.id("newSubscriptionLink");	
 	public By promotionName = By.id("form:id_promoNameInputText");
