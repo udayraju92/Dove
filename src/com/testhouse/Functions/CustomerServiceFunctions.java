@@ -2,8 +2,12 @@ package com.testhouse.Functions;
 
 import java.util.concurrent.TimeUnit;
 
+import org.joda.time.DateTime;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import atu.testng.reports.ATUReports;
@@ -1473,7 +1477,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 		}
 
 	}
-	
+
 	public void renewSubscription(WebDriver driver, String client, String brand, String refNumber,  String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String custName, String cardNum1, String date, String year) throws Exception
 	{
 		orderRef=refNumber;
@@ -1484,50 +1488,50 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(2);
 			element(driver, renewButton).click();
 			TimeUnit.SECONDS.sleep(2);
-	
-    TimeUnit.SECONDS.sleep(2);
-	element(driver, promotionName).sendKeys(promotion);
-	element(driver, findPromotion).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, selectPromotion(promotion)).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, promotionNextBtn).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, offerCard(cardType)).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, custNextBtn).click();
-	TimeUnit.SECONDS.sleep(2);
-	try
-	{
-		element(driver, custAssociationNextBtn).isDisplayed();
-		element(driver, custAssociationNextBtn).click();
+
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, promotionName).sendKeys(promotion);
+			element(driver, findPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, offerCard(cardType)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			ATUReports.add("Renew subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do Renew subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
 	}
-	catch(Exception e)
-	{
-		// No Action Required
-	}
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, issueCalenderNextBtn).click();
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, customerName).sendKeys(custName);
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, cardNumber).sendKeys(cardNum1);
-	TimeUnit.SECONDS.sleep(2);
-	Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
-	TimeUnit.SECONDS.sleep(2);
-	Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
-	TimeUnit.SECONDS.sleep(5);
-	element(driver, checkoutNextBtn).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, orderRefNumber).isDisplayed();
-	ATUReports.add("Renew subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
-}
-catch(Exception e)
-{
-	ATUReports.add("Unable to do Renew subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
-	takeScreenShotOnFailure(driver, testName);
-}
-}
 
 	public void upgradeSubscription(WebDriver driver, String client, String brand,  String refNumber,String contractType,  String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String custName, String cardNum1, String date, String year) throws Exception
 	{
@@ -1539,53 +1543,124 @@ catch(Exception e)
 			TimeUnit.SECONDS.sleep(2);
 			element(driver, upgradeButton).click();
 			TimeUnit.SECONDS.sleep(2);
-	element(driver, selectBrand).sendKeys(brand);
-    TimeUnit.SECONDS.sleep(2);
-    element(driver, selectContract).sendKeys(contractType);
-    TimeUnit.SECONDS.sleep(2);
-	element(driver, promotionName).sendKeys(promotion);
-    TimeUnit.SECONDS.sleep(2);
-	element(driver, findPromotion).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, selectPromotion(promotion)).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, promotionNextBtn).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, offerCard(cardType)).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, custNextBtn).click();
-	TimeUnit.SECONDS.sleep(2);
-	try
-	{
-		element(driver, custAssociationNextBtn).isDisplayed();
-		element(driver, custAssociationNextBtn).click();
+			element(driver, selectBrand).sendKeys(brand);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, selectContract).sendKeys(contractType);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, promotionName).sendKeys(promotion);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, findPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, offerCard(cardType)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			ATUReports.add("Upgrade subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do upgrade subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
 	}
-	catch(Exception e)
-	{
-		// No Action Required
-	}
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, issueCalenderNextBtn).click();
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, customerName).sendKeys(custName);
-	TimeUnit.SECONDS.sleep(2);
-	element(driver, cardNumber).sendKeys(cardNum1);
-	TimeUnit.SECONDS.sleep(2);
-	Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
-	TimeUnit.SECONDS.sleep(2);
-	Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
-	TimeUnit.SECONDS.sleep(5);
-	element(driver, checkoutNextBtn).click();
-	TimeUnit.SECONDS.sleep(3);
-	element(driver, orderRefNumber).isDisplayed();
-	ATUReports.add("Upgrade subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
-}
-catch(Exception e)
-{
-	ATUReports.add("Unable to do upgrade subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
-	takeScreenShotOnFailure(driver, testName);
-}
-}
 
+	public void amendContract_SendLetter(WebDriver driver, String letterName, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, systemLetter).click();
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, sendLetter(letterName)).click(); 
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+					TimeUnit.SECONDS.sleep(5);
+				}
+			}
+
+			waitForElementToVanish(driver, spinner);
+			Assert.assertTrue(element(driver, sendLetterVerification).isDisplayed());
+			ATUReports.add("Amend contract System letter has been sent successfully: "+letterName+ ":" +orderRef, "User should be able to send the letter successfully", "Letter " + letterName+ " has been sent successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Amend contract System letter not sent successfully: "+letterName+ ":" +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+
+
+	public void amendContract_Suspend(WebDriver driver, String reason, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, suspend).click();
+			waitForElement(driver, selectReason, 50);
+			
+			Select(element(driver, selectReason)).selectByVisibleText(reason);
+			waitForElementToVanish(driver, spinner);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, suspendStartingFrom).sendKeys(DateTime.now().toString("dd/MM/yyyy"));
+			
+			element(driver, confirmSuspend).click();
+			waitForElementToVanish(driver, spinner);
+		
+			TimeUnit.SECONDS.sleep(8);
+			
+			Assert.assertEquals(element(driver, suspendedStatus), "SUSPENDED");
+			ATUReports.add("Customer reference number has been suspended successfully : "+reason+ " : " +orderRef, "User should be able to send the letter successfully", "Customer Reference Number "+orderRef+" has been suspended successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Customer reference number has not been suspended: "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
 
 }	

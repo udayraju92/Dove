@@ -16,6 +16,10 @@ public class CustomerServiceObjects
 	public By logIn = By.id("id_loginForm:id_loginButton");
 	public By logOut = By.linkText("Logout");
 
+	
+	public By spinner = By.xpath("//*[contains(@id,'SpinnerGif')]");
+	
+	
 	/* Customer Service Objects */
 	public By customerServiceLink = By.linkText("Customer Services");
 	public By clientSelect = By.id("brandSearchForm:client");
@@ -26,8 +30,8 @@ public class CustomerServiceObjects
 		return brandSelect;
 	}
 
-	
-	public By fastFoward = By.xpath("//div/table/tbody/tr/td[10]");
+
+	public By fastFoward = By.xpath("//td[text()='»']");
 	public By newSubscription = By.id("newSubscriptionLink");	
 	public By promotionName = By.id("form:id_promoNameInputText");
 	public By findPromotion = By.xpath("//*[contains(@value,'Find Promotion')]");
@@ -137,12 +141,66 @@ public class CustomerServiceObjects
 	public By changeDetails = By.id("amendDetailsform:id_inputTextAmendDetailsAlter");
 	public By fName = By.id("summaryform:id_textCustOptionForeName");
 	public By summary = By.linkText("Summary");	
-	
-	//Renew Subscription /Upgrade Subscription
-    public By renewButton = By.xpath("//input[@value='Renew Subscription']");
-    public By upgradeButton = By.xpath("//input[@value='Upgrade Subscription']");
-    public By selectBrand = By.xpath("//*[@id='form:j_id60_body']/table/tbody/tr[1]/td[2]/select");
-    public By selectContract = By.xpath("//*[@id='form:j_id60_body']/table/tbody/tr[2]/td[2]/select");
-    
 
+	//Renew Subscription /Upgrade Subscription
+	public By renewButton = By.xpath("//input[@value='Renew Subscription']");
+	public By upgradeButton = By.xpath("//input[@value='Upgrade Subscription']");
+	public By selectBrand = By.xpath("//*[@id='form:j_id60_body']/table/tbody/tr[1]/td[2]/select");
+	public By selectContract = By.xpath("//*[@id='form:j_id60_body']/table/tbody/tr[2]/td[2]/select");
+
+	//Transaction History
+	public By transactionEnquiry = By.linkText("Transaction Enquiry");
+	public By amendContract = By.id("transEnquiryform:id_transactionEnquiry_amend_contract_tab_lbl");
+	
+	//Amend Contract - System Letter
+	public By systemLetter = By.id("transEnquiryform:id_amendContractButtonSystemLetter");
+	public By sendLetter(String letterName)
+	{
+		By sendLetter = By.xpath("//td[text()='"+letterName+"']/following-sibling::td[2]/div/input[@value='Send']");
+		return sendLetter;
+	}
+	public By sendLetterVerification = By.xpath("//div[text()='The letter has been sent for processing']");
+	
+	//Amend Contract - Change Start Issue
+	public By changeStartIssue = By.id("transEnquiryform:id_amendContractButtonChangePreferredStartIssue");
+	
+	//Amend Contract - Suspend
+	public By suspend = By.id("transEnquiryform:id_amendContractButtonShowSuspend");
+	public By selectReason = By.id("transEnquiryform:id_amendContractSuspendReasoncomboboxField");
+	public By confirmSuspend = By.id("transEnquiryform:id_amendContractButtonConfirmSuspend");
+	public By suspendStartingFrom = By.xpath("//input[contains(@id,'InputDate')]");
+	public By suspendedStatus = By.xpath("//td[./*[./*[contains(@id,'arrowImg') and contains(@style,'inline')]]]/following-sibling::td[4]/div[1]/span");
+	
+	//Amend Contract - Resume
+	public By resume = By.id("transEnquiryform:id_amendContractButtonShowResume");
+	
+	//Amend Contract - Refund Details
+	public By refundDetails = By.id("transEnquiryform:id_amendContractButtonRefundDetails");
+	
+	//Amend Contract - Mailing Method
+	public By mailingMethod = By.id("transEnquiryform:id_amendContractButtonMailingChange");
+	
+	//Amend Contract - Change Term
+	public By changeTerm = By.id("transEnquiryform:id_amendContractButtonTermChange");
+	
+	//Amend Contract - Payment Details
+	public By paymentDetails = By.id("transEnquiryform:id_amendContractButtonPaymentDetails");
+	
+	//Amend Contract - Add Payment
+	public By addPayment= By.id("transEnquiryform:id_amendContractButtonAddPayment");
+	
+	//Amend Contract - Unpay
+	public By unpay = By.id("transEnquiryform:id_amendContractButtonUnpay");
+		
+	//Amend Contract - Cancel Immediately
+	public By cancelImmediately = By.id("transEnquiryform:id_amendContractButtonShowCancel");
+	
+	//Amend Contract - Cancel on Expiry
+	public By cancelOnExpiry = By.id("transEnquiryform:id_amendContractButtonCancelOnExpiry");
+	
+	//Amend Contract - Refund Amount
+	public By refundAmount = By.id("transEnquiryform:id_amendContractButtonRefundAmount");
+	
+	
+	
 }

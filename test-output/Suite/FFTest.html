@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>FFTest</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/0/1</td>
+<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
 </tr><tr>
-<td>Started on:</td><td>Wed Jul 06 08:28:33 IST 2016</td>
+<td>Started on:</td><td>Wed Jul 06 14:12:13 IST 2016</td>
 </tr>
-<tr><td>Total time:</td><td>1 seconds (1747 ms)</td>
+<tr><td>Total time:</td><td>195 seconds (195334 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -68,41 +68,31 @@ function toggleAllBoxes() {
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
 <table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED CONFIGURATIONS</b></td></tr>
+<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td width="30%"><b>Exception</b></td>
 <td width="10%"><b>Time (seconds)</b></td>
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='com.testhouse.TestScript.CustomerServices.setUp()'><b>setUp</b><br>Test class: com.testhouse.TestScript.CustomerServices<br>Parameters: Firefox</td>
-<td><div><pre>org.openqa.selenium.WebDriverException: Cannot find firefox binary in PATH. Make sure firefox is installed. OS appears to be: VISTA
-Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:55:52&apos;
-System info: host: &apos;THSVM10009&apos;, ip: &apos;192.168.12.230&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_31&apos;
-Driver info: driver.version: FirefoxDriver
-	at org.openqa.selenium.firefox.internal.Executable.&lt;init&gt;(Executable.java:74)
-	at org.openqa.selenium.firefox.FirefoxBinary.&lt;init&gt;(FirefoxBinary.java:60)
-	at org.openqa.selenium.firefox.FirefoxBinary.&lt;init&gt;(FirefoxBinary.java:56)
-	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:120)
-	at com.testhouse.TestScript.CustomerServices.setUp(CustomerServices.java:76)
-... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace402249858", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace402249858'><pre>org.openqa.selenium.WebDriverException: Cannot find firefox binary in PATH. Make sure firefox is installed. OS appears to be: VISTA
-Build info: version: &apos;2.48.2&apos;, revision: &apos;41bccdd&apos;, time: &apos;2015-10-09 19:55:52&apos;
-System info: host: &apos;THSVM10009&apos;, ip: &apos;192.168.12.230&apos;, os.name: &apos;Windows 7&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;6.1&apos;, java.version: &apos;1.8.0_31&apos;
-Driver info: driver.version: FirefoxDriver
-	at org.openqa.selenium.firefox.internal.Executable.&lt;init&gt;(Executable.java:74)
-	at org.openqa.selenium.firefox.FirefoxBinary.&lt;init&gt;(FirefoxBinary.java:60)
-	at org.openqa.selenium.firefox.FirefoxBinary.&lt;init&gt;(FirefoxBinary.java:56)
-	at org.openqa.selenium.firefox.FirefoxDriver.&lt;init&gt;(FirefoxDriver.java:120)
-	at com.testhouse.TestScript.CustomerServices.setUp(CustomerServices.java:76)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:216)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
+<td title='com.testhouse.TestScript.CustomerServices.cSAmendContract_SystemLetter()'><b>cSAmendContract_SystemLetter</b><br>Test class: com.testhouse.TestScript.CustomerServices<br>Parameters: {Brand=BBC SKY AT NIGHT, Username=vvijayakumar, ReferenceNumber=DOVECU286338, Client=IMMEDIATE MEDIA, LetterName=No Stock Sub Ext By 1, Password=Testhouse@123}<br/>
+<a href="#Output-1403815002" onClick='toggleBox("Output-1403815002", this, "Show output", "Hide output");'>Show output</a>
+
+<a href="#Output-1403815002" onClick="toggleAllBoxes();">Show all outputs</a>
+<div class='log' id="Output-1403815002">
+STEP1<br/>
+STEP2<br/>
+STEP3<br/>
+</div>
+</td>
+<td><div><pre>[ATU Custom Reporter Step Failed Exception]
+	at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(Unknown Source)
+... Removed 22 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1403815002", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
+<div class='stack-trace' id='stack-trace1403815002'><pre>[ATU Custom Reporter Step Failed Exception]
+	at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(Unknown Source)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1665)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1645)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:703)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
@@ -123,60 +113,8 @@ Driver info: driver.version: FirefoxDriver
 	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
 </pre></div></td>
-<td>0</td>
-<td>com.testhouse.TestScript.CustomerServices@60c6f5b</td></tr>
-<tr>
-<td title='com.testhouse.TestScript.CustomerServices.tearDown()'><b>tearDown</b><br>Test class: com.testhouse.TestScript.CustomerServices</td>
-<td><div><pre>java.lang.NullPointerException
-	at com.testhouse.Functions.GeneralFunctions.element(GeneralFunctions.java:104)
-	at com.testhouse.TestScript.CustomerServices.tearDown(CustomerServices.java:430)
-... Removed 27 stack frames</pre></div><a href='#' onClick='toggleBox("stack-trace1000966072", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace1000966072'><pre>java.lang.NullPointerException
-	at com.testhouse.Functions.GeneralFunctions.element(GeneralFunctions.java:104)
-	at com.testhouse.TestScript.CustomerServices.tearDown(CustomerServices.java:430)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:216)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:712)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:778)
-	at org.testng.TestRunner.run(TestRunner.java:632)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
-	at org.testng.TestNG.runSuites(TestNG.java:1075)
-	at org.testng.TestNG.run(TestNG.java:1047)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
-</pre></div></td>
-<td>0</td>
-<td>com.testhouse.TestScript.CustomerServices@60c6f5b</td></tr>
-</table><p>
-<table width='100%' border='1' class='invocation-skipped'>
-<tr><td colspan='4' align='center'><b>SKIPPED TESTS</b></td></tr>
-<tr><td><b>Test method</b></td>
-<td width="30%"><b>Exception</b></td>
-<td width="10%"><b>Time (seconds)</b></td>
-<td><b>Instance</b></td>
-</tr>
-<tr>
-<td title='com.testhouse.TestScript.CustomerServices.cSUpgradeSub()'><b>cSUpgradeSub</b><br>Test class: com.testhouse.TestScript.CustomerServices<br>Parameters: {ExpiryDate=06, Address=DOVETAIL SERVICES 800 GUILLAT AVENUE KENT SCIENCE PARK, ReferenceNumber=DOVECU286338, Title=Mr, Postcode=ME98GU, Card=Credit card, Brand=BBC SKY AT NIGHT, Firstname=Vish, PromotionName=Test promo 17-2-16, Username=vvijayakumar, CustomerName=Vishnu, Client=IMMEDIATE MEDIA, Card1=4444333322221111, Contract=New Contract, Surname=Test, ExpiryYear=2018, Password=Testhouse@123}</td>
-<td></td>
-<td>0</td>
-<td>com.testhouse.TestScript.CustomerServices@60c6f5b</td></tr>
+<td>107</td>
+<td>com.testhouse.TestScript.CustomerServices@6e20b53a</td></tr>
 </table><p>
 </body>
 </html>

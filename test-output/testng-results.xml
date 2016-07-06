@@ -1,13 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="1" failed="0" total="1" passed="0">
+<testng-results skipped="0" failed="1" total="1" passed="0">
   <reporter-output>
+    <line>
+      <![CDATA[STEP1]]>
+    </line>
+    <line>
+      <![CDATA[STEP2]]>
+    </line>
+    <line>
+      <![CDATA[STEP3]]>
+    </line>
   </reporter-output>
-  <suite name="Suite" duration-ms="1747" started-at="2016-07-06T02:58:33Z" finished-at="2016-07-06T02:58:35Z">
+  <suite name="Suite" duration-ms="195334" started-at="2016-07-06T08:42:13Z" finished-at="2016-07-06T08:45:29Z">
     <groups>
     </groups>
-    <test name="FFTest" duration-ms="1747" started-at="2016-07-06T02:58:33Z" finished-at="2016-07-06T02:58:35Z">
+    <test name="FFTest" duration-ms="195334" started-at="2016-07-06T08:42:13Z" finished-at="2016-07-06T08:45:29Z">
       <class name="com.testhouse.TestScript.CustomerServices">
-        <test-method status="FAIL" signature="setUp(java.lang.String)[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="setUp" is-config="true" duration-ms="0" started-at="2016-07-06T08:28:35Z" finished-at="2016-07-06T08:28:35Z">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.testhouse.TestScript.CustomerServices@6e20b53a]" name="setUp" is-config="true" duration-ms="17831" started-at="2016-07-06T14:12:15Z" finished-at="2016-07-06T14:12:33Z">
           <params>
             <param index="0">
               <value>
@@ -15,81 +24,24 @@
               </value>
             </param>
           </params>
-          <exception class="org.openqa.selenium.WebDriverException">
-            <message>
-              <![CDATA[Cannot find firefox binary in PATH. Make sure firefox is installed. OS appears to be: VISTA
-Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:55:52'
-System info: host: 'THSVM10009', ip: '192.168.12.230', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_31'
-Driver info: driver.version: FirefoxDriver]]>
-            </message>
-            <full-stacktrace>
-              <![CDATA[org.openqa.selenium.WebDriverException: Cannot find firefox binary in PATH. Make sure firefox is installed. OS appears to be: VISTA
-Build info: version: '2.48.2', revision: '41bccdd', time: '2015-10-09 19:55:52'
-System info: host: 'THSVM10009', ip: '192.168.12.230', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_31'
-Driver info: driver.version: FirefoxDriver
-	at org.openqa.selenium.firefox.internal.Executable.<init>(Executable.java:74)
-	at org.openqa.selenium.firefox.FirefoxBinary.<init>(FirefoxBinary.java:60)
-	at org.openqa.selenium.firefox.FirefoxBinary.<init>(FirefoxBinary.java:56)
-	at org.openqa.selenium.firefox.FirefoxDriver.<init>(FirefoxDriver.java:120)
-	at com.testhouse.TestScript.CustomerServices.setUp(CustomerServices.java:76)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:216)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:590)
-	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
-	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
-	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
-	at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:112)
-	at org.testng.TestRunner.privateRun(TestRunner.java:778)
-	at org.testng.TestRunner.run(TestRunner.java:632)
-	at org.testng.SuiteRunner.runTest(SuiteRunner.java:366)
-	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:361)
-	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:319)
-	at org.testng.SuiteRunner.run(SuiteRunner.java:268)
-	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
-	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:86)
-	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1225)
-	at org.testng.TestNG.runSuitesLocally(TestNG.java:1150)
-	at org.testng.TestNG.runSuites(TestNG.java:1075)
-	at org.testng.TestNG.run(TestNG.java:1047)
-	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:126)
-	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:137)
-	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
-]]>
-            </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="SKIP" signature="cSUpgradeSub(java.util.HashMap)[pri:9, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="cSUpgradeSub" duration-ms="16" started-at="2016-07-06T08:28:35Z" data-provider="databinding" finished-at="2016-07-06T08:28:35Z">
+        <test-method status="FAIL" signature="cSAmendContract_SystemLetter(java.util.HashMap)[pri:9, instance:com.testhouse.TestScript.CustomerServices@6e20b53a]" name="cSAmendContract_SystemLetter" duration-ms="107161" started-at="2016-07-06T14:12:33Z" data-provider="databinding" finished-at="2016-07-06T14:14:20Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{ExpiryDate=06, Address=DOVETAIL SERVICES 800 GUILLAT AVENUE KENT SCIENCE PARK, ReferenceNumber=DOVECU286338, Title=Mr, Postcode=ME98GU, Card=Credit card, Brand=BBC SKY AT NIGHT, Firstname=Vish, PromotionName=Test promo 17-2-16, Username=vvijayakumar, CustomerName=Vishnu, Client=IMMEDIATE MEDIA, Card1=4444333322221111, Contract=New Contract, Surname=Test, ExpiryYear=2018, Password=Testhouse@123}]]>
+                <![CDATA[{Brand=BBC SKY AT NIGHT, Username=vvijayakumar, ReferenceNumber=DOVECU286338, Client=IMMEDIATE MEDIA, LetterName=No Stock Sub Ext By 1, Password=Testhouse@123}]]>
               </value>
             </param>
           </params>
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- cSUpgradeSub -->
-        <test-method status="FAIL" signature="tearDown()[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="tearDown" is-config="true" duration-ms="0" started-at="2016-07-06T08:28:35Z" finished-at="2016-07-06T08:28:35Z">
-          <exception class="java.lang.NullPointerException">
+          <exception class="atu.testng.reports.exceptions.ATUReporterStepFailedException">
             <full-stacktrace>
-              <![CDATA[java.lang.NullPointerException
-	at com.testhouse.Functions.GeneralFunctions.element(GeneralFunctions.java:104)
-	at com.testhouse.TestScript.CustomerServices.tearDown(CustomerServices.java:430)
-	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
-	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
-	at java.lang.reflect.Method.invoke(Unknown Source)
-	at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
-	at org.testng.internal.Invoker.invokeConfigurationMethod(Invoker.java:515)
-	at org.testng.internal.Invoker.invokeConfigurations(Invoker.java:216)
-	at org.testng.internal.Invoker.invokeMethod(Invoker.java:712)
+              <![CDATA[[ATU Custom Reporter Step Failed Exception]
+	at atu.testng.reports.listeners.ATUReportsListener.onTestSuccess(Unknown Source)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1665)
+	at org.testng.internal.Invoker.runTestListeners(Invoker.java:1645)
+	at org.testng.internal.Invoker.invokeMethod(Invoker.java:703)
 	at org.testng.internal.Invoker.invokeTestMethod(Invoker.java:823)
 	at org.testng.internal.Invoker.invokeTestMethods(Invoker.java:1131)
 	at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:129)
@@ -111,7 +63,20 @@ Driver info: driver.version: FirefoxDriver
 	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:58)
 ]]>
             </full-stacktrace>
-          </exception> <!-- java.lang.NullPointerException -->
+          </exception> <!-- atu.testng.reports.exceptions.ATUReporterStepFailedException -->
+          <reporter-output>
+            <line>
+              <![CDATA[STEP1]]>
+            </line>
+            <line>
+              <![CDATA[STEP2]]>
+            </line>
+            <line>
+              <![CDATA[STEP3]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- cSAmendContract_SystemLetter -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testhouse.TestScript.CustomerServices@6e20b53a]" name="tearDown" is-config="true" duration-ms="68858" started-at="2016-07-06T14:14:20Z" finished-at="2016-07-06T14:15:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

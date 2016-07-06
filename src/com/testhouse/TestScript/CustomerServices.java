@@ -7,10 +7,12 @@ import java.util.List;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.omg.CORBA.TIMEOUT;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.testng.Assert;
 import org.testng.ITestContext;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -402,7 +404,7 @@ public class CustomerServices extends CustomerServiceFunctions
 	 * @throws Exception 
 	 * @param check whether user can upgrade a subscription from CS screen
 	 */
-	@Test(priority=9, dataProvider="databinding")
+	// @Test(priority=9, dataProvider="databinding")
 	public void cSUpgradeSub(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Creating a new subscription through Customer service screen");
@@ -418,6 +420,50 @@ public class CustomerServices extends CustomerServiceFunctions
 		upgradeSubscription(driver, h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"),h.get("Contract") , h.get("PromotionName"), h.get("Card"), h.get("Title"), h.get("Firstname"), h.get("Surname"), h.get("Postcode"), h.get("Address"), h.get("CustomerName"), h.get("Card1"), h.get("ExpiryDate"), h.get("ExpiryYear"));
 	}
 	
+	
+	/**
+	 * Test to check whether user can Amend Contract through System letter from CS screen
+	 * @throws Exception 
+	 * @param amendContract_SendLetter function to Amend Contract in Transaction Enquiry through System Letter
+	 */
+	@Test(priority=9, dataProvider="databinding")
+	public void cSAmendContract_SystemLetter(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by sending System Letter");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_SendLetter(driver, h.get("LetterName"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through System letter from CS screen
+	 * @throws Exception 
+	 * @param amendContract_SendLetter function to Amend Contract in Transaction Enquiry through System Letter
+	 */
+	@Test(priority=9, dataProvider="databinding")
+	public void cSAmendContract_Suspend(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by sending System Letter");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_SendLetter(driver, h.get("LetterName"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
 	
 	/**
 	 * Method which is used to quit all the browser instances after execution

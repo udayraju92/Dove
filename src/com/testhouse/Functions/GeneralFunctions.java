@@ -136,6 +136,27 @@ public class GeneralFunctions extends CustomerServiceObjects
 	}
 
 	/**
+	 * Wait for the element to be present in the DOM, and not displayed on the page. 
+	 * @param WebDriver	The driver object to be used 
+	 * @param By	selector to find the element
+	 * @param int	The time in seconds to wait until returning a failure
+	 * 
+	 */
+	public void waitForElementToVanish(WebDriver driver, final By by) 
+	{
+		try
+		{	
+			WebDriverWait wait = new WebDriverWait(driver, 50); 
+			wait.until(ExpectedConditions.invisibilityOfElementLocated(by));		
+			
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
+		}
+	}
+
+	/**
 	 * Method to select a value from the dropdown
 	 * @param findElement Element which needs to be selected
 	 * @return Will return the particular dropdown selection

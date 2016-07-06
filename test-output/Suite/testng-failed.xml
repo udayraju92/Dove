@@ -9,7 +9,7 @@
         <methods>
           <include name="setUp"/>
           <include name="tearDown"/>
-          <include name="cSUpgradeSub"/>
+          <include name="cSAmendContract_SystemLetter"/>
         </methods>
       </class> <!-- com.testhouse.TestScript.CustomerServices -->
     </classes>
