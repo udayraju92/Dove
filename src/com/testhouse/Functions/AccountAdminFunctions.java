@@ -12,7 +12,7 @@ import atu.testng.selenium.reports.CaptureScreen.ScreenshotOf;
 
 import com.testhouse.ObjectRepository.AccountAdminObjects;
 
-public class AAFunctions extends AccountAdminObjects
+public class AccountAdminFunctions extends AccountAdminObjects
 {
 	public static String testName;
 

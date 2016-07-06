@@ -19,7 +19,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import com.testhouse.Functions.AAFunctions;
+import com.testhouse.Functions.AccountAdminFunctions;
 
 import atu.testng.reports.ATUReports;
 import atu.testng.reports.listeners.ATUReportsListener;
@@ -37,7 +37,7 @@ import automation_home.ddf.wrapperimpl.ExcelWrapper;
  *
  */
 @Listeners({ ATUReportsListener.class, ConfigurationListener.class,	MethodListener.class })
-public class AccountAdmin extends AAFunctions
+public class AccountAdmin extends AccountAdminFunctions
 {	
 	/* Defining object for driver */
 	WebDriver driver;
