@@ -28,7 +28,7 @@ import automation_home.ddf.constants.ExcelConstants;
 import automation_home.ddf.wrapper.Wrapper;
 import automation_home.ddf.wrapperimpl.ExcelWrapper;
 
-import com.testhouse.Functions.CSFunctions;
+import com.testhouse.Functions.CustomerServiceFunctions;
 import com.testhouse.Functions.CustomerBillingFunctions;
 
 /**
@@ -38,7 +38,7 @@ import com.testhouse.Functions.CustomerBillingFunctions;
  *
  */
 @Listeners({ ATUReportsListener.class, ConfigurationListener.class,	MethodListener.class })
-public class CustomerServices extends CSFunctions
+public class CustomerServices extends CustomerServiceFunctions
 {
 	/* Defining object for driver */
 	WebDriver driver;

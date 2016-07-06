@@ -2,9 +2,9 @@ package com.testhouse.ObjectRepository;
 
 import org.openqa.selenium.By;
 
-import com.testhouse.Functions.CSFunctions;
+import com.testhouse.Functions.CustomerServiceFunctions;
 
-public class CustomerBillingObjects extends CSFunctions 
+public class CustomerBillingObjects extends CustomerServiceFunctions 
 {
 	/* Customer Billing Objects */
 	public By customerBillingLink = By.linkText("Customer Billing");
