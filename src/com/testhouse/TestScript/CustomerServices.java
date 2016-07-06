@@ -462,7 +462,7 @@ public class CustomerServices extends CustomerServiceFunctions
 
 		/* Amend contract in CS Screen */
 		/* Send System Letter */
-		amendContract_SendLetter(driver, h.get("LetterName"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+		amendContract_Suspend(driver, h.get("Reason"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
 	}
 	
 	/**
