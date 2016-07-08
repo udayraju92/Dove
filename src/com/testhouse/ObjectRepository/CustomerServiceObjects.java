@@ -242,5 +242,4 @@ public class CustomerServiceObjects
 	public By confirmRefund = By.id("transEnquiryform:id_amendContractButtonConfirmContractRefund");
 	public By refundDetailsVerification = By.xpath("//table[@id='transEnquiryform:clientTable']/tbody/tr[last()]/td[2]");
 	
-	
 }
