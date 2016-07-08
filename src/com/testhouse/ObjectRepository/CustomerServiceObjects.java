@@ -152,6 +152,9 @@ public class CustomerServiceObjects
 	public By transactionEnquiry = By.linkText("Transaction Enquiry");
 	public By amendContract = By.id("transEnquiryform:id_transactionEnquiry_amend_contract_tab_lbl");
 	
+	//Customer History
+	public By customerHistory = By.linkText("Customer History");
+	
 	//Amend Contract - System Letter
 	public By systemLetter = By.id("transEnquiryform:id_amendContractButtonSystemLetter");
 	public By sendLetter(String letterName)
@@ -163,25 +166,59 @@ public class CustomerServiceObjects
 	
 	//Amend Contract - Change Start Issue
 	public By changeStartIssue = By.id("transEnquiryform:id_amendContractButtonChangePreferredStartIssue");
+	public By selectStartIssue = By.name("transEnquiryform:j_id421");
+	public By changeContract = By.id("transEnquiryform:id_amendStartIssueButton");
+	
 	
 	//Amend Contract - Suspend
 	public By suspend = By.id("transEnquiryform:id_amendContractButtonShowSuspend");
-	public By selectReason = By.id("transEnquiryform:id_amendContractSuspendReasoncomboboxField");
+	public By selectReasonSuspend = By.id("transEnquiryform:id_amendContractSuspendReasoncomboboxButton");
+	public By suspendReason(String reason)
+	{
+		By selectReason = By.xpath("//span[contains(text(),'"+reason+"') and contains(@class,'rich-combobox-item')]");
+		return selectReason;
+	}
+	
 	public By confirmSuspend = By.id("transEnquiryform:id_amendContractButtonConfirmSuspend");
 	public By suspendStartingFrom = By.xpath("//input[contains(@id,'InputDate')]");
 	public By suspendedStatus = By.xpath("//td[./*[./*[contains(@id,'arrowImg') and contains(@style,'inline')]]]/following-sibling::td[4]/div[1]/span");
 	
 	//Amend Contract - Resume
 	public By resume = By.id("transEnquiryform:id_amendContractButtonShowResume");
+	public By selectReasonResume = By.id("transEnquiryform:id_amendContractResumeReasoncomboboxButton");
+	public By resumeReason(String reason)
+	{
+		By selectReason = By.xpath("//span[contains(text(),'"+reason+"') and contains(@class,'rich-combobox-item')]");
+		return selectReason;
+	}
+	public By resumeStartingFrom = By.id("transEnquiryform:j_id1035comboboxButton");
+	public By resumeStartingSelect(String month)
+	{
+		By selectResumeStartingFrom = By.xpath("//span[contains(text(),'"+month+"') and contains(@class,'rich-combobox-item')]");
+		return selectResumeStartingFrom;
+	}
+	public By resumeStartingDate = By.id("transEnquiryform:j_id1038InputDate");
+	public By confirmResume = By.id("transEnquiryform:id_amendContractButtonConfirmResume");
+	public By resumeVerification = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[3]");
 	
 	//Amend Contract - Refund Details
 	public By refundDetails = By.id("transEnquiryform:id_amendContractButtonRefundDetails");
 	
 	//Amend Contract - Mailing Method
 	public By mailingMethod = By.id("transEnquiryform:id_amendContractButtonMailingChange");
+	public By selectMailingMethod = By.name("transEnquiryform:j_id1018");
+	public By confirmMailingMethod = By.id("transEnquiryform:id_amendMailingMethod");
+	public By verifyDispatchType = By.id("summaryform:id_textCustOptionDispatchType");
 	
 	//Amend Contract - Change Term
 	public By changeTerm = By.id("transEnquiryform:id_amendContractButtonTermChange");
+	public By changeTerm_Action = By.id("transEnquiryform:id_amendTermActionMenu");
+	public By changeTerm_Reason = By.id("transEnquiryform:id_amendTermReasonMenu");
+	public By changeTerm_IssueType = By.id("transEnquiryform:id_amendTermIssueTypeMenu");
+	public By changeTerm_NoOfIssues = By.id("transEnquiryform:id_inputTextAmendContractTermNoOfIssues");
+	public By changeTerm_Save = By.xpath("//input[@type='submit' and @value='Save']");
+	public By changeTermVerification = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[3]");
+	public By changeTermVerification1 = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[4]");
 	
 	//Amend Contract - Payment Details
 	public By paymentDetails = By.id("transEnquiryform:id_amendContractButtonPaymentDetails");
@@ -200,7 +237,10 @@ public class CustomerServiceObjects
 	
 	//Amend Contract - Refund Amount
 	public By refundAmount = By.id("transEnquiryform:id_amendContractButtonRefundAmount");
-	
+	public By refundAmountValue = By.id("transEnquiryform:overiderefund");
+	public By refundReason = By.id("transEnquiryform:id_refundReason");
+	public By confirmRefund = By.id("transEnquiryform:id_amendContractButtonConfirmContractRefund");
+	public By refundDetailsVerification = By.xpath("//table[@id='transEnquiryform:clientTable']/tbody/tr[last()]/td[2]");
 	
 	
 }

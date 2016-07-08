@@ -426,7 +426,7 @@ public class CustomerServices extends CustomerServiceFunctions
 	 * @throws Exception 
 	 * @param amendContract_SendLetter function to Amend Contract in Transaction Enquiry through System Letter
 	 */
-	@Test(priority=9, dataProvider="databinding")
+	//@Test(priority=10, dataProvider="databinding")
 	public void cSAmendContract_SystemLetter(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by sending System Letter");
@@ -444,11 +444,12 @@ public class CustomerServices extends CustomerServiceFunctions
 	}
 	
 	/**
-	 * Test to check whether user can Amend Contract through System letter from CS screen
+	 * Test to check whether user can Amend Contract through Suspend from CS screen
 	 * @throws Exception 
-	 * @param amendContract_SendLetter function to Amend Contract in Transaction Enquiry through System Letter
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Suspend
+	 * @param Reference Number should be of a Credit Card Subscription
 	 */
-	@Test(priority=9, dataProvider="databinding")
+	//@Test(priority=11, dataProvider="databinding")
 	public void cSAmendContract_Suspend(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by sending System Letter");
@@ -461,8 +462,100 @@ public class CustomerServices extends CustomerServiceFunctions
 		login(driver, h.get("Username"), h.get("Password"), testName);
 
 		/* Amend contract in CS Screen */
-		/* Send System Letter */
+		/* Suspend Subscription */
 		amendContract_Suspend(driver, h.get("Reason"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
+	//@Test(priority=12, dataProvider="databinding")
+	public void cSAmendContract_Resume(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by resuming the Suspended subscription");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_Resume(driver, h.get("Reason"), h.get("ResumeStartingFrom"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
+	//@Test(priority=13, dataProvider="databinding")
+	public void cSAmendContract_RefundAmount(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by refunding the amount");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_RefundAmount(driver, h.get("Amount"), h.get("Reason"), h.get("CustomerName"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
+	//@Test(priority=14, dataProvider="databinding")
+	public void cSAmendContract_MailingMethod(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by changing Mailing Method");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_MailingMethod(driver, h.get("MailingMethod"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
+	@Test(priority=15, dataProvider="databinding")
+	public void cSAmendContract_ChangeTerm(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by changing Term");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_ChangeTerm(driver, h.get("Action"), h.get("Reason"), h.get("IssueType"), h.get("NumberOfIssues"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
 	}
 	
 	/**

@@ -336,4 +336,16 @@ public class GeneralFunctions extends CustomerServiceObjects
 		} 
 		return jQcondition; 
 	}
+	
+	public void elementHighlight(WebDriver driver, final By by) {
+		for (int i = 0; i < 2; i++) {
+			JavascriptExecutor js = (JavascriptExecutor) driver;
+			js.executeScript(
+					"arguments[0].setAttribute('style', arguments[1]);",
+					element(driver, by), "color: red; border: 3px solid red;");
+			js.executeScript(
+					"arguments[0].setAttribute('style', arguments[1]);",
+					element(driver, by), "");
+		}
+	}
 }

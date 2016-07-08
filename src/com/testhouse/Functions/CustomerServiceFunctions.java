@@ -1640,25 +1640,181 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			element(driver, amendContract).click();
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, suspend).click();
-			waitForElement(driver, selectReason, 50);
-			
-			Select(element(driver, selectReason)).selectByVisibleText(reason);
+			/*waitForElement(driver, selectReasonSuspend, 50);*/
+			TimeUnit.SECONDS.sleep(10);
+			//Select(element(driver, selectReasonSuspend)).selectByVisibleText(reason);
+			elementHighlight(driver, selectReasonSuspend);
+			element(driver, selectReasonSuspend).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, suspendReason(reason)).click();
 			waitForElementToVanish(driver, spinner);
 			TimeUnit.SECONDS.sleep(3);
-			
+			element(driver, suspendStartingFrom).clear();
 			element(driver, suspendStartingFrom).sendKeys(DateTime.now().toString("dd/MM/yyyy"));
-			
+			TimeUnit.SECONDS.sleep(3);
 			element(driver, confirmSuspend).click();
 			waitForElementToVanish(driver, spinner);
 		
 			TimeUnit.SECONDS.sleep(8);
 			
-			Assert.assertEquals(element(driver, suspendedStatus), "SUSPENDED");
-			ATUReports.add("Customer reference number has been suspended successfully : "+reason+ " : " +orderRef, "User should be able to send the letter successfully", "Customer Reference Number "+orderRef+" has been suspended successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			Assert.assertEquals(element(driver, suspendedStatus).getText(), "SUSPENDED");			
+			ATUReports.add("Customer reference number has been suspended successfully : "+reason+ " : " +orderRef, "User should be able to suspend the subscription successfully", "Customer Reference Number "+orderRef+" has been suspended successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
 		catch(Exception e)
 		{
 			ATUReports.add("Customer reference number has not been suspended: "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	
+	
+	public void amendContract_Resume(WebDriver driver, String reason, String resumeStartFrom, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, resume).click();
+			waitForElement(driver, selectReasonResume, 50);
+			
+			element(driver, selectReasonResume).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, resumeReason(reason)).click();
+			waitForElementToVanish(driver, spinner);
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectReasonSuspend).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, resumeStartingSelect(resumeStartFrom)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, resumeStartingDate).sendKeys(DateTime.now().toString("dd/MM/yyyy"));
+			
+			element(driver, confirmResume).click();
+			waitForElementToVanish(driver, spinner);
+		
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+			
+			Assert.assertEquals(element(driver, resumeVerification).getText(), "RESUME_PENDING - "+reason);
+			ATUReports.add("Customer reference number has been resumed successfully : "+reason+ " : " +orderRef, "User should be able to resume the subsricption successfully", "Customer Reference Number "+orderRef+" has been resumed successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Customer reference number has not been resumed: "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void amendContract_RefundAmount(WebDriver driver, String amount, String reason, String customerFullName, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, refundAmount).click();
+			waitForElement(driver, refundAmountValue, 50);
+			
+			element(driver, refundAmountValue).sendKeys(amount);
+			TimeUnit.SECONDS.sleep(3);
+			Select(element(driver, refundReason)).selectByVisibleText(reason);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, confirmRefund).click();
+			waitForElementToVanish(driver, spinner);
+		
+			element(driver, refundDetails).click();
+			TimeUnit.SECONDS.sleep(8);	
+			
+			System.out.println("CHQ REF "+amount+" to " +customerFullName+ " .");
+			Assert.assertEquals(element(driver, refundDetailsVerification).getText(), "CHQ REF "+amount+" to " +customerFullName+ " .");
+			ATUReports.add("Amount has been refunded successfully : "+reason+ " : " +orderRef, "User should be able to refund the amount for the subsricption successfully", "Customer Reference Number "+orderRef+" has been refunded successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Amount has not been refunded: "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void amendContract_MailingMethod(WebDriver driver, String mailingType, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, mailingMethod).click();
+			waitForElement(driver, selectMailingMethod, 50);
+					
+			Select(element(driver, selectMailingMethod)).selectByVisibleText(mailingType);
+			TimeUnit.SECONDS.sleep(3);
+					
+			element(driver, confirmMailingMethod).click();
+			waitForElementToVanish(driver, spinner);
+		
+			element(driver, summary).click();
+			TimeUnit.SECONDS.sleep(8);	
+			
+			Assert.assertEquals(element(driver, verifyDispatchType).getText(), mailingType);
+			ATUReports.add("Mailing Method has been updated successfully : "+mailingType+ " : " +orderRef, "User should be able to update the mailing method for the subsricption successfully", "Mailing method for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Mailing method has not been updated : "+mailingType+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void amendContract_ChangeTerm(WebDriver driver, String action, String reason, String issueType, String noOfIssues, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, changeTerm).click();
+			waitForElement(driver, changeTerm_Action, 50);
+					
+			Select(element(driver,changeTerm_Action)).selectByVisibleText(action);
+			TimeUnit.SECONDS.sleep(3);
+					
+			Select(element(driver,changeTerm_Reason)).selectByVisibleText(reason);
+			TimeUnit.SECONDS.sleep(3);
+			
+			Select(element(driver,changeTerm_IssueType)).selectByVisibleText(issueType);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver,changeTerm_Reason).clear();
+			element(driver,changeTerm_Reason).sendKeys(noOfIssues);
+			
+			element(driver, changeTerm_Save).click();
+			
+			waitForElementToVanish(driver, spinner);
+		
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+					
+			Assert.assertEquals(element(driver, changeTermVerification).getText(), "CHANGE_CONTRACT_TERM   -   "+reason);
+			Assert.assertEquals(element(driver, changeTermVerification1).getText(), "Change request for ADD_ENTITLEMENT with Issue Numbers : "+noOfIssues+", Issue Type : "+issueType+", Date : "+DateTime.now().toString("dd/MM/yyyy"));
+			ATUReports.add("Term has been updated successfully : "+reason+ " : " +orderRef, "User should be able to update the Term for the subsricption successfully", "Term for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Term has not been updated : "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}
