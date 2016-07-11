@@ -7,13 +7,19 @@
     <line>
       <![CDATA[STEP2]]>
     </line>
+    <line>
+      <![CDATA[STEP3]]>
+    </line>
+    <line>
+      <![CDATA[STEP4]]>
+    </line>
   </reporter-output>
-  <suite name="Suite" duration-ms="193349" started-at="2016-07-08T11:44:34Z" finished-at="2016-07-08T11:47:48Z">
+  <suite name="Suite" duration-ms="403448" started-at="2016-07-11T08:53:56Z" finished-at="2016-07-11T09:00:40Z">
     <groups>
     </groups>
-    <test name="FFTest" duration-ms="193349" started-at="2016-07-08T11:44:34Z" finished-at="2016-07-08T11:47:48Z">
+    <test name="FFTest" duration-ms="403448" started-at="2016-07-11T08:53:56Z" finished-at="2016-07-11T09:00:40Z">
       <class name="com.testhouse.TestScript.CustomerServices">
-        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="setUp" is-config="true" duration-ms="19283" started-at="2016-07-08T17:14:36Z" finished-at="2016-07-08T17:14:55Z">
+        <test-method status="PASS" signature="setUp(java.lang.String)[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="setUp" is-config="true" duration-ms="35014" started-at="2016-07-11T14:23:58Z" finished-at="2016-07-11T14:24:33Z">
           <params>
             <param index="0">
               <value>
@@ -24,11 +30,11 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="FAIL" signature="cSAmendContract_ChangeTerm(java.util.HashMap)[pri:15, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="cSAmendContract_ChangeTerm" duration-ms="166545" started-at="2016-07-08T17:14:55Z" data-provider="databinding" finished-at="2016-07-08T17:17:42Z">
+        <test-method status="FAIL" signature="customerServiceType2(java.util.HashMap)[pri:1, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="customerServiceType2" duration-ms="360926" started-at="2016-07-11T14:24:33Z" data-provider="databinding" finished-at="2016-07-11T14:30:34Z">
           <params>
             <param index="0">
               <value>
-                <![CDATA[{Brand=BBC SKY AT NIGHT, Action=ADD_ENTITLEMENT, Username=vvijayakumar, IssueType=PAID, ReferenceNumber=DOVECU4347580, NumberOfIssues=2.0, Client=IMMEDIATE MEDIA, Reason=Term Change - Compensation , Password=Testhouse@123}]]>
+                <![CDATA[{Address=DOVETAIL SERVICES 800 GUILLAT AVENUE KENT SCIENCE PARK, Title=Mr, SortCode=111111, Postcode=ME98GU, Card=Direct Debit, Brand=MATCH OF THE DAY, Firstname=Sreejith, AccNumber=11111111, PromotionName=RC109, Username=SSunil , AccHolderName=Vishnu, Client=IMMEDIATE MEDIA, Surname=Test, Password=Testhouse@123}]]>
               </value>
             </param>
           </params>
@@ -68,9 +74,15 @@
             <line>
               <![CDATA[STEP2]]>
             </line>
+            <line>
+              <![CDATA[STEP3]]>
+            </line>
+            <line>
+              <![CDATA[STEP4]]>
+            </line>
           </reporter-output>
-        </test-method> <!-- cSAmendContract_ChangeTerm -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="tearDown" is-config="true" duration-ms="6256" started-at="2016-07-08T17:17:42Z" finished-at="2016-07-08T17:17:48Z">
+        </test-method> <!-- customerServiceType2 -->
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:com.testhouse.TestScript.CustomerServices@60c6f5b]" name="tearDown" is-config="true" duration-ms="6271" started-at="2016-07-11T14:30:34Z" finished-at="2016-07-11T14:30:40Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->

@@ -242,4 +242,26 @@ public class CustomerServiceObjects
 	public By confirmRefund = By.id("transEnquiryform:id_amendContractButtonConfirmContractRefund");
 	public By refundDetailsVerification = By.xpath("//table[@id='transEnquiryform:clientTable']/tbody/tr[last()]/td[2]");
 	
+	public By editChequeDetails = By.xpath("//input[@type='submit' and contains(@value,'Edit Cheque Details')]");
+	public By saveChequeDetails = By.xpath("//input[@type='submit' and contains(@value,'Save Cheque Details')]");
+	public By editChequeDetails_PayeeTitle = By.id("transEnquiryform:amtrefundform:addInputPayeeTitle_acr");
+	public By editChequeDetails_PayeeName = By.id("transEnquiryform:amtrefundform:addInputPayeeSurName_acr");
+	public By editChequeDetails_AddressLine1 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[1]/td[2]/input");
+	public By editChequeDetails_AddressLine2 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[2]/td[2]/input");
+	public By editChequeDetails_AddressLine3 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[3]/td[2]/input");
+	public By editChequeDetails_AddressLine4 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[4]/td[2]/input");
+	public By editChequeDetails_AddressLine5 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[5]/td[2]/input");
+	public By editChequeDetails_AddressLine6 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[6]/td[2]/input");	
+	public By editChequeDetails_Country = By.name("transEnquiryform:amtrefundform:j_id1102");			
+	public By editChequeDetails_PostCode = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[8]/td[2]/input");
+	
+	public By chequeDetailsVerifcation_Name = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[1]/tbody/tr/td[2]");
+	public By chequeDetailsVerifcation_AddressLine1 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[1]/td[2]");
+	public By chequeDetailsVerifcation_AddressLine2 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[2]/td[2]");
+	public By chequeDetailsVerifcation_AddressLine3 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[3]/td[2]");
+	public By chequeDetailsVerifcation_AddressLine4 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[4]/td[2]");
+	public By chequeDetailsVerifcation_AddressLine5 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[5]/td[2]");
+	public By chequeDetailsVerifcation_AddressLine6 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[6]/td[2]");
+	public By chequeDetailsVerifcation_PostCode = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[8]/td[2]");
+	
 }

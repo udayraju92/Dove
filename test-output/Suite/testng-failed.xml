@@ -7,9 +7,9 @@
     <classes>
       <class name="com.testhouse.TestScript.CustomerServices">
         <methods>
-          <include name="cSAmendContract_ChangeTerm"/>
           <include name="setUp"/>
           <include name="tearDown"/>
+          <include name="customerServiceType2"/>
         </methods>
       </class> <!-- com.testhouse.TestScript.CustomerServices -->
     </classes>

@@ -1709,7 +1709,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 		}
 	}
 	
-	public void amendContract_RefundAmount(WebDriver driver, String amount, String reason, String customerFullName, String client, String brand, String referenceNumber) throws Exception
+	public void amendContract_RefundAmount(WebDriver driver, String amount, String reason, String payeeTitle, String customerFullName,String address1, String address2, String address3, String address4, String address5, String address6, String country, String postCode, String client, String brand, String referenceNumber) throws Exception
 	{
 		orderRef = referenceNumber;
 		fetchDetailsCs(driver, client, brand);
@@ -1727,13 +1727,64 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			Select(element(driver, refundReason)).selectByVisibleText(reason);
 			TimeUnit.SECONDS.sleep(3);
 			
+			element(driver, editChequeDetails).click();
+			TimeUnit.SECONDS.sleep(8);
+			
+			element(driver, editChequeDetails_PayeeTitle).clear();
+			element(driver, editChequeDetails_PayeeTitle).sendKeys(payeeTitle);
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, editChequeDetails_PayeeName).clear();
+			element(driver, editChequeDetails_PayeeName).sendKeys(customerFullName);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine1).clear();
+			element(driver, editChequeDetails_AddressLine1).sendKeys(address1);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine2).clear();
+			element(driver, editChequeDetails_AddressLine2).sendKeys(address2);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine3).clear();
+			element(driver, editChequeDetails_AddressLine3).sendKeys(address3);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine4).clear();
+			element(driver, editChequeDetails_AddressLine4).sendKeys(address4);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine5).clear();
+			element(driver, editChequeDetails_AddressLine5).sendKeys(address5);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, editChequeDetails_AddressLine6).clear();
+			element(driver, editChequeDetails_AddressLine6).sendKeys(address6);
+			TimeUnit.SECONDS.sleep(3);
+			
+			Select(element(driver,editChequeDetails_Country)).selectByVisibleText(country);
+			
+			element(driver, editChequeDetails_PostCode).clear();
+			element(driver, editChequeDetails_PostCode).sendKeys(postCode);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, saveChequeDetails).click();
+			TimeUnit.SECONDS.sleep(8);	
+			
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_Name).getText(), payeeTitle +" " +customerFullName);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine1).getText(), address1);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine2).getText(), address2);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine3).getText(), address3);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine4).getText(), address4);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine5).getText(), address5);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine6).getText(), address6);
+			Assert.assertEquals(element(driver, chequeDetailsVerifcation_PostCode).getText(), postCode);
+				
 			element(driver, confirmRefund).click();
 			waitForElementToVanish(driver, spinner);
 		
 			element(driver, refundDetails).click();
 			TimeUnit.SECONDS.sleep(8);	
-			
-			System.out.println("CHQ REF "+amount+" to " +customerFullName+ " .");
+
 			Assert.assertEquals(element(driver, refundDetailsVerification).getText(), "CHQ REF "+amount+" to " +customerFullName+ " .");
 			ATUReports.add("Amount has been refunded successfully : "+reason+ " : " +orderRef, "User should be able to refund the amount for the subsricption successfully", "Customer Reference Number "+orderRef+" has been refunded successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
