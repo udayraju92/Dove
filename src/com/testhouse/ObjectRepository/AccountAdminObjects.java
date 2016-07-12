@@ -16,7 +16,7 @@ public class AccountAdminObjects extends GeneralFunctions
 		By brandSelect = By.linkText(brand);
 		return brandSelect;
 	}
-	public By fastFoward = By.xpath("//div/table/tbody/tr/td[10]");
+	public By fastFoward = By.xpath("//td[text()='»']");
 	public By addSchedule = By.id("id_scheduleListform:id_addScheduleButton");
 	
 	/* New Schedule */
@@ -25,9 +25,11 @@ public class AccountAdminObjects extends GeneralFunctions
 	public By optimisticCheck = By.id("id_scheduleForm:opt");
 	public By calenderBasedCheck = By.id("id_scheduleForm:cal");
 	public By activeCheck = By.id("id_scheduleForm:act");	
+	public By pActiveCheck = By.id("j_id99:id_productOnly");
 	public By subscriptionType = By.id("id_scheduleForm:id_typeOfSubscriptionDecorator:charge");
 	public By saveScheduleBtn = By.id("id_scheduleForm:id_saveButton");
 	public By schedulesList = By.id("id_scheduleForm:id_schedulesButton");
+	public By eventDelivery = By.xpath("//*[@id='j_id99:j_id130_body']/table/tbody/tr[2]/td[2]/select");
 	
 	public By findSchedule(String name)
 	{

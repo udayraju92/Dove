@@ -124,7 +124,7 @@ public class AccountAdmin extends AccountAdminFunctions
 	 * @throws Exception 
 	 * 
 	 */
-	@Test(priority=0, dataProvider="databinding")
+	//@Test(priority=0, dataProvider="databinding")
 	public void optimisticStandardSchedule(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Creating a new standard optimistic Schedule");
@@ -137,7 +137,7 @@ public class AccountAdmin extends AccountAdminFunctions
 		login(driver, h.get("Username"), h.get("Password"), testName);
 		
 		/* Creating a new Standard Schedule */
-		standardSchedule(driver, h.get("Client"), h.get("Brand"), h.get("Optimistic"), h.get("Calender"), h.get("Active"), h.get("Name"), h.get("Description"), h.get("Type"), h.get("EventWhen"), h.get("EventDeliveryType"), h.get("EventDestination"));
+		standardSchedule(driver, h.get("Client"), h.get("Brand"), h.get("Optimistic"), h.get("Calender"), h.get("Active"), h.get("Name"), h.get("Description"), h.get("Type"), h.get("EventWhen"), h.get("EventDeliveryType"), h.get("ProductO"), h.get("EventDestination"), h.get("EventDelivery"));
 	}
 	
 	/**
@@ -145,7 +145,7 @@ public class AccountAdmin extends AccountAdminFunctions
 	 * @throws Exception 
 	 * 
 	 */
-	@Test(priority=1, dataProvider="databinding")
+	//@Test(priority=1, dataProvider="databinding")
 	public void nonOptimisticStandardSchedule(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Creating a new standard non optimistic Schedule");
@@ -158,7 +158,28 @@ public class AccountAdmin extends AccountAdminFunctions
 		login(driver, h.get("Username"), h.get("Password"), testName);
 		
 		/* Creating a new Standard Schedule */
-		standardSchedule(driver, h.get("Client"), h.get("Brand"), h.get("Optimistic"), h.get("Calender"), h.get("Active"), h.get("Name"), h.get("Description"), h.get("Type"), h.get("EventWhen"), h.get("EventDeliveryType"), h.get("EventDestination"));
+		standardSchedule(driver, h.get("Client"), h.get("Brand"), h.get("Optimistic"), h.get("Calender"), h.get("Active"), h.get("Name"), h.get("Description"), h.get("Type"), h.get("EventWhen"), h.get("EventDeliveryType"), h.get("ProductOnly"), h.get("EventDestination"), h.get("EventDelivery"));
+	}
+	
+	/**
+	 * Test to create a new Product only schedule
+	 * @throws Exception 
+	 * 
+	 */
+	@Test(priority=2, dataProvider="databinding")
+	public void productOnlySchedule(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Creating a new standard non optimistic Schedule");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+		
+		/* Creating a new Product Only Schedule */
+		standardSchedule(driver, h.get("Client"), h.get("Brand"), h.get("Optimistic"), h.get("Calender"), h.get("Active"), h.get("Name"), h.get("Description"), h.get("Type"), h.get("EventWhen"), h.get("EventDeliveryType"), h.get("ProductOnly"), h.get("EventDestination"), h.get("EventDelivery"));
 	}
 		
 	/**
