@@ -75,6 +75,7 @@ public class CustomerServiceObjects
 
 	// Verify the newly created order
 	public By homeLink = By.linkText("Main Menu");
+	public By csHomeLink = By.linkText("CS_HOME");
 	public By serviceExistingSubscriptionLink = By.id("existingSubscriptionLink");
 	public By customerRefSearch = By.id("searchCriteria:id_custrefinputtext");
 	public By viewCustomersButton = By.id("searchCriteria:id_advancedCustomerSearchButton");
@@ -113,7 +114,8 @@ public class CustomerServiceObjects
 	public By gLookupAddress = By.id("id_newCustomerDetailsForm:id_customerBillingAddressLookupButton");
 	public By gSelectAddress = By.name("id_newCustomerDetailsForm:j_id147");
 	public By gSaveButton = By.name("id_newCustomerDetailsForm:id_saveRecipientCustomerButton");
-
+	public By gAddMoreButton = By.id("id_newCustomerDetailsForm:id_addNewRecipientCustomerButton");
+	
 	//For product only subscription
 	public By proRadioButton = By.id("form:id_subscriptionOption:1");
 	public By listProButton = By.id("j_id53:id_textListProducts");

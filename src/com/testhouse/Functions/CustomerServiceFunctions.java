@@ -337,6 +337,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			System.out.println(e1);
 		}
 	}
+	
 	public void newSubscriptionCCGiftType3(WebDriver driver, String client, String brand, String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String gCustTitle, String gFirstname, String gSurname, String gPostalcode, String gAddress, String custName, String cardNum1, String date, String year) throws Exception
 	{
 		try
@@ -2270,6 +2271,277 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			orderRef = element(driver, orderRefNumber).getText();
 
 			ATUReports.add("New subscription has been done successfully using default promotion with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do a new subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void newSubscriptionCCCType8(WebDriver driver, String client, String brand, String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String custName, String cardNum1, String date, String year) throws Exception
+	{
+		try
+		{
+			element(driver, customerServiceLink).click();	
+			TimeUnit.SECONDS.sleep(3);
+			for (String winHandle : driver.getWindowHandles()) 
+			{
+				driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+			}
+			Select(element(driver, clientSelect)).selectByVisibleText(client);
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, brandSelect(brand)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}		
+			element(driver, newSubscription).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, promotionName).sendKeys(promotion);
+			element(driver, findPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, offerCard(cardType)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}		
+			element(driver, title).sendKeys(custTitle);
+			element(driver, firstName).sendKeys(firstname);
+			element(driver, surName).sendKeys(surname);
+			element(driver, postCode).sendKeys(postalcode);
+			element(driver, lookupAddress).click();
+			TimeUnit.SECONDS.sleep(5);
+			Select(element(driver, selectAddress)).selectByVisibleText(address);
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			orderRef = element(driver, orderRefNumber).getText();
+			element(driver, csHomeLink).click();
+			TimeUnit.SECONDS.sleep(8);
+			Assert.assertTrue(element(driver, clientSelect).isDisplayed(), "User is navigated to Customer Services Home page");
+			ATUReports.add("New subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do a new subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	/**
+	 * Method used for verifying the newly created subscription
+	 * @param driver Object for defining the web driver
+	 * @param promotion Variable to pass the promotion name
+	 * @throws Exception To throw an exception whenever an unexpected failure occurs
+	 */
+	public void verifyNewSubscriptionCSType8(WebDriver driver, String promotion, String client, String brand) throws Exception
+	{
+		try
+		{
+			try
+			{
+				fetchDetailsCs(driver, client, brand);
+				TimeUnit.SECONDS.sleep(3);
+				Assert.assertEquals(accountID, orderRef);
+				Assert.assertEquals(verifyStatus, "ACTIVE");
+				Assert.assertEquals(verifyType, "STANDARD_SUBSCRIPTION");
+				Assert.assertEquals(payMethod, "CREDIT_CARD");
+				Assert.assertEquals(payStatus, "Paid");
+				Assert.assertEquals(renStatus, "Continious");
+				Assert.assertEquals(subRole, "DIRECT");
+				ATUReports.add(verifyType + " Order: "+accountID+"has been successfully verified in CS screen with contract status as:"+verifyStatus,"Order Reference: "+ orderRef,"Payment Method: Direct_Debit, Payment Status: UnPaid, Renewal Status: Continous, Subscriber Role: Direct","Payment Method: "+payMethod + ", Payment Status:"+payStatus+ " ,Renewal Status:"+ renStatus+", Subscriber Role: " +subRole,LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+
+				TimeUnit.SECONDS.sleep(5); 
+			}
+			catch (AssertionError e)
+			{
+				ATUReports.add("Unable to verify the newly created subscription",accountID, verifyStatus, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+				takeScreenShotOnFailure(driver, testName);
+				System.out.println(e);
+			}
+
+		}
+		catch (Exception e1)
+		{
+			takeScreenShotOnFailure(driver, testName);
+			System.out.println(e1);
+		}
+	}
+	
+	public void giftSubscriptionRecepientDetails(WebDriver driver, String client, String brand, String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String gCustTitle, String gFirstname, String gSurname, String gPostalcode, String gAddress, String gFirstname1, String gSurname1, String gFirstname2, String gSurname2, String custName, String cardNum1, String date, String year) throws Exception
+	{
+		try
+		{
+			element(driver, customerServiceLink).click();	
+			TimeUnit.SECONDS.sleep(3);
+			for (String winHandle : driver.getWindowHandles()) 
+			{
+				driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+			}
+			Select(element(driver, clientSelect)).selectByVisibleText(client);
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, brandSelect(brand)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}		
+			element(driver, newSubscription).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, promotionName).sendKeys(promotion);
+			element(driver, findPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, offerCard(cardType)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, title).sendKeys(custTitle);
+			element(driver, firstName).sendKeys(firstname);
+			element(driver, surName).sendKeys(surname);
+			element(driver, postCode).sendKeys(postalcode);
+			element(driver, lookupAddress).click();
+			TimeUnit.SECONDS.sleep(5);
+			Select(element(driver, selectAddress)).selectByVisibleText(address);
+			TimeUnit.SECONDS.sleep(5);
+						
+			element(driver, giftSubs).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gTitle).sendKeys(gCustTitle);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gFirstName).sendKeys(gFirstname);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSurName).sendKeys(gSurname);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gPostCode).sendKeys(gPostalcode);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gLookupAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSelectAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSaveButton).click();
+			TimeUnit.SECONDS.sleep(2);
+			
+			element(driver, gAddMoreButton).click();
+			
+			element(driver, giftSubs).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gTitle).sendKeys(gCustTitle);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gFirstName).sendKeys(gFirstname1);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSurName).sendKeys(gSurname1);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gPostCode).sendKeys(gPostalcode);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gLookupAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSelectAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSaveButton).click();
+			TimeUnit.SECONDS.sleep(2);
+						
+			element(driver, gAddMoreButton).click();
+			
+			element(driver, giftSubs).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gTitle).sendKeys(gCustTitle);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gFirstName).sendKeys(gFirstname2);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSurName).sendKeys(gSurname2);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gPostCode).sendKeys(gPostalcode);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gLookupAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSelectAddress).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, gSaveButton).click();
+			TimeUnit.SECONDS.sleep(2);
+			
+			
+			
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			orderRef = element(driver, orderRefNumber).getText();
+			ATUReports.add("New subscription has been done sucessfully with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
 		catch(Exception e)
 		{

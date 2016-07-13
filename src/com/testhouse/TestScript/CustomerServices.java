@@ -636,6 +636,53 @@ public class CustomerServices extends CustomerServiceFunctions
 	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
 	 * @param Reference Number should be of a Credit Card Subscription 
 	 */
+	//@Test(priority=16, dataProvider="databinding")
+	public void cSAmendContract_CancelImmediately(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by changing Term");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_CancelImmediately(driver, h.get("Reason"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
+	//@Test(priority=16, dataProvider="databinding")
+	public void cSAmendContract_CancelOnExpiry(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Amending the existing subscription by changing Term");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Amend contract in CS Screen */
+		/* Send System Letter */
+		amendContract_CancelOnExpiry(driver, h.get("Reason"), h.get("Client"), h.get("Brand"), h.get("ReferenceNumber"));
+	}
+	
+	/**
+	 * Test to check whether user can Amend Contract through Resume from CS screen
+	 * @throws Exception 
+	 * @param amendContract_Suspend function to Amend Contract in Transaction Enquiry through Resume
+	 * @param Reference Number should be of a Credit Card Subscription 
+	 */
 	//@Test(priority=17, dataProvider="databinding")
 	public void differentDeliveryAddress(HashMap<String, String> h) throws Exception
 	{
@@ -676,7 +723,37 @@ public class CustomerServices extends CustomerServiceFunctions
 		getDefaultPromotion(driver, h.get("Client"), h.get("Brand"), h.get("PromotionName"), h.get("Card"), h.get("Title"), h.get("Firstname"), h.get("Surname"), h.get("Postcode"), h.get("Address"), h.get("CustomerName"), h.get("Card1"), h.get("ExpiryDate"), h.get("ExpiryYear"));
 	}
 	
-	
+	/**
+	 * Test to perform a new subscription via Customer Service screen and to verify it in CS and Customer Billing screens
+	 * @param Type8:Customer service_UK Personal Subscription Issuebased_Optimistic_Single stage_CCC;  Renewal Strategy : Continuous;  Schedule:Direct & Optimistic; Offer: Issue based; Payment method: Credit Card
+	 * @throws Exception 
+	 * @param newSubscription function to create a new subscription
+	 * @param verifyNewSubscription function verify newly created subscription in CS screen
+	 * @param cbf.verifyNewSubscriptionCB function to verify newly created subscription in Customer Billing screen
+	 */
+	//@Test(priority=19, dataProvider="databinding")
+	public void customerServiceType8(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Creating a new subscription through Customer service screen");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Creating a new subscription */		
+		newSubscriptionCCCType8(driver, h.get("Client"), h.get("Brand"), h.get("PromotionName"), h.get("Card"), h.get("Title"), h.get("Firstname"), h.get("Surname"), h.get("Postcode"), h.get("Address"), h.get("CustomerName"), h.get("Card1"), h.get("ExpiryDate"), h.get("ExpiryYear"));
+
+		/* Verify the newly created subscription in Customer Service Screen*/
+		verifyNewSubscriptionCSType8(driver, h.get("PromotionName"), h.get("Client"), h.get("Brand"));
+
+		/* Verify the newly created subscription in Customer Billing Screen*/
+		cbf.verifyNewSubscriptionCBType8(driver);
+		TimeUnit.SECONDS.sleep(3);
+
+	}
 	
 	/**
 	 * Method which is used to quit all the browser instances after execution

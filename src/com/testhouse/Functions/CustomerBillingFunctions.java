@@ -80,7 +80,7 @@ public class CustomerBillingFunctions extends CustomerBillingObjects
 
 	public void verifyNewSubscriptionCBType2(WebDriver driver) throws Exception
 	{
-		testName = "verifyNewSubscriptionCBType1";
+		testName = "verifyNewSubscriptionCBType2";
 		try
 		{
 			TimeUnit.SECONDS.sleep(3);
@@ -115,7 +115,7 @@ public class CustomerBillingFunctions extends CustomerBillingObjects
 
 	public void verifyNewSubscriptionCBType3(WebDriver driver) throws Exception
 	{
-		testName = "verifyNewSubscriptionCBType1";
+		testName = "verifyNewSubscriptionCBType3";
 		try
 		{
 			fetchDetailsCB(driver);
@@ -150,7 +150,7 @@ public class CustomerBillingFunctions extends CustomerBillingObjects
 	}
 	public void verifyNewSubscriptionCBType4(WebDriver driver) throws Exception
 	{
-		testName = "verifyNewSubscriptionCBType1";
+		testName = "verifyNewSubscriptionCBType4";
 		try
 		{
 			fetchDetailsCB(driver);
@@ -218,6 +218,38 @@ public class CustomerBillingFunctions extends CustomerBillingObjects
 			System.out.println(e1);
 		}
 	}
+	
+	public void verifyNewSubscriptionCBType8(WebDriver driver) throws Exception
+	{
+		testName = "verifyNewSubscriptionCBType8";
+		try
+		{
+			fetchDetailsCB(driver);
+			try
+			{
+				Assert.assertTrue(element(driver, verifyLedger).isDisplayed());
+				element(driver, accSubDet).click();
+				//billTerms = element(driver, billingTerms).getText();
+				Assert.assertTrue(element(driver, billingTerms).getText().contains("ISSUES"));
+				optimis = element(driver, optimistic).getText();
+				Assert.assertEquals(optimis, "true");
+				ATUReports.add(" Order:"+orderRef+" has been successfully verified in Customer Billing screen with Billing Terms is issue based", orderRef,"Optimistic = true"," Optimistic =" + optimis,LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+				TimeUnit.SECONDS.sleep(5); 
+			}
+			catch(AssertionError e)
+			{
+				ATUReports.add("Unable to verify the newly created subscription in Customer Billing Screen","Billing Terms: "+ billTerms,"Optimistic = " + optimis, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+				takeScreenShotOnFailure(driver, testName);
+				System.out.println(e);
+			}
+		}
+		catch(Exception e1)
+		{
+			takeScreenShotOnFailure(driver, testName);
+			System.out.println(e1);
+		}
+	}
+	
 	public void cBCheckDetails(WebDriver driver,  String referenceNumb) throws Exception
 	{
 		try
