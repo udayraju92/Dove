@@ -30,12 +30,24 @@ public class AccountAdminObjects extends GeneralFunctions
 	public By saveScheduleBtn = By.id("id_scheduleForm:id_saveButton");
 	public By schedulesList = By.id("id_scheduleForm:id_schedulesButton");
 	public By eventDelivery = By.xpath("//*[@id='j_id99:j_id130_body']/table/tbody/tr[2]/td[2]/select");
+	public By backDelivery = By.id("j_id99:id_IncludeOption:0");
+	
+	public By eventDelivery(String bIssues)
+	{
+		By eventDelivery = By.xpath("//tr[2]/td[2]/input");
+		// By eventDelivery = By.xpath("//*[contains(text(),'JUL 05')]/parent::td/following::input");
+        return eventDelivery;
+	}
+	
+	public By test = By.id("j_id99:id_allbackIssues:1:id_selectedBackIssue");
 	
 	public By findSchedule(String name)
-	{
-		By brandSelect = By.xpath("//*[contains(text(),'"+name+"')]");
-		return brandSelect;
-	}
+	 {
+	  By brandSelect = By.xpath("//*[contains(text(),'"+name+"')]");
+	  return brandSelect;
+	 }
+
+	
 	
 	/* New Event */
 	public By scheduleEventsBtn = By.id("id_scheduleForm:id_eventsButton");

@@ -32,7 +32,7 @@ public class AccountAdminFunctions extends AccountAdminObjects
 	 * @param dest Object for selecting the destination option from the list
 	 * @throws Exception To throw an exception whenever an unexpected failure occurs
 	 */
-	public void standardSchedule(WebDriver driver, String client, String brand, String opt, String cal, String act,String name, String description, String type, String when, String delType, String prod, String dest, String delv) throws Exception
+	public void standardSchedule(WebDriver driver, String client, String brand, String opt, String cal, String act,String name, String description, String type, String when, String delType, String prod, String dest, String delv, String bDelivery, String bissues) throws Exception
 	{
 		try
 		{
@@ -61,7 +61,7 @@ public class AccountAdminFunctions extends AccountAdminObjects
 				}
 			}	
 			TimeUnit.SECONDS.sleep(8);
-			
+
 			try
 			{
 				element(driver, addSchedule).isEnabled();
@@ -111,11 +111,65 @@ public class AccountAdminFunctions extends AccountAdminObjects
 			}
 			element(driver, eventNextBtn).click();
 			TimeUnit.SECONDS.sleep(15);
-			Select(element(driver, eventDest)).selectByVisibleText(dest);
+			if(delType.equals("ISSUE")||delType.equals("MERCHANDISE"))
+			{
+				Select(element(driver, eventDest)).selectByVisibleText(dest);
+				if(prod.equals("Yes")||prod.equals("yes"))
+				{
+					element(driver, eventDelivery).sendKeys(delv);
+				}
+
+			}
 			TimeUnit.SECONDS.sleep(5);
-			if(prod.equals("Yes")||prod.equals("yes"))
+
+			if(bDelivery.equals("Include Only")||bDelivery.equals("Include Only"))
+			{
+				element(driver, backDelivery).click();
+				TimeUnit.SECONDS.sleep(2);
+				for (int i = 1; i <= 100; i++)
+				{
+					try
+					{String eveDelv =null;
+					eveDelv = element(driver, eventDelivery(bissues)).getTagName()+"   "+element(driver, eventDelivery(bissues)).getLocation();
+
+					TimeUnit.SECONDS.sleep(7);
+					break;
+					}
+
+					catch (Exception e)
+					{
+						element(driver, fastFoward).click();
+					}
+
+				}
+			}
+			if(prod.equals("Exclude Only")||prod.equals("Exclude Only"))
 			{
 				element(driver, eventDelivery).sendKeys(delv);
+			}
+
+			if(bDelivery.equals("Yes")||bDelivery.equals("yes"))
+			{element(driver, backDelivery).click();
+			TimeUnit.SECONDS.sleep(10);
+			//element(driver, eventDelivery(bissues)).click();
+			elementHighlight(driver, test);
+			//element(driver, test).click();
+			TimeUnit.SECONDS.sleep(7);
+//			for (int i = 1; i <= 100; i++)
+//			{
+//				try
+//				{
+//					TimeUnit.SECONDS.sleep(10);
+//					element(driver, eventDelivery(bissues)).click();
+//					TimeUnit.SECONDS.sleep(7);
+//				}
+//
+//				catch (Exception e)
+//				{
+//					element(driver, fastFoward).click();
+//				}
+//				break;
+//			}
 			}
 			element(driver, eventFinishBtn).click();
 			TimeUnit.SECONDS.sleep(5);
@@ -123,16 +177,16 @@ public class AccountAdminFunctions extends AccountAdminObjects
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, eventBackBtn).click();
 			TimeUnit.SECONDS.sleep(5);
-			element(driver, saveScheduleBtn).click();
+	//		element(driver, saveScheduleBtn).click();
 			TimeUnit.SECONDS.sleep(2);
 			element(driver, schedulesList).click();
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			if(element(driver, findSchedule(""+name+""+" "+dateFolder+"")).isDisplayed())
 			{
 				ATUReports.add("Created and verified a new standard schedule: "+""+name+""+" "+dateFolder+"", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 			}
-			
+
 			else
 			{
 				ATUReports.add("Unable to verify the newly created subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
