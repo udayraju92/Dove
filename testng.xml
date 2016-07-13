@@ -4,8 +4,8 @@
 	<test name="FFTest">
 		<parameter name="browser" value="Firefox" />
 		<classes>
-			<!--<class name="com.testhouse.TestScript.AccountAdmin" />  -->
-			<class name="com.testhouse.TestScript.CustomerServices" />
+			<class name="com.testhouse.TestScript.AccountAdmin" /> 
+			<!--<class name="com.testhouse.TestScript.CustomerServices" />-->
 			<!--<class name="com.testhouse.TestScript.CustomerBilling" />  -->
 		</classes>
 	</test>

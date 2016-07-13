@@ -32,7 +32,7 @@ public class AccountAdminFunctions extends AccountAdminObjects
 	 * @param dest Object for selecting the destination option from the list
 	 * @throws Exception To throw an exception whenever an unexpected failure occurs
 	 */
-	public void standardSchedule(WebDriver driver, String client, String brand, String opt, String cal, String act,String name, String description, String type, String when, String delType, String dest) throws Exception
+	public void standardSchedule(WebDriver driver, String client, String brand, String opt, String cal, String act,String name, String description, String type, String when, String delType, String prod, String dest, String delv) throws Exception
 	{
 		try
 		{
@@ -105,10 +105,18 @@ public class AccountAdminFunctions extends AccountAdminObjects
 			TimeUnit.SECONDS.sleep(3);
 			Select(element(driver, eventDeliveryType)).selectByVisibleText(delType);
 			TimeUnit.SECONDS.sleep(2);
+			if(prod.equals("Yes")||prod.equals("yes"))
+			{
+				element(driver, pActiveCheck).click();
+			}
 			element(driver, eventNextBtn).click();
 			TimeUnit.SECONDS.sleep(15);
 			Select(element(driver, eventDest)).selectByVisibleText(dest);
 			TimeUnit.SECONDS.sleep(5);
+			if(prod.equals("Yes")||prod.equals("yes"))
+			{
+				element(driver, eventDelivery).sendKeys(delv);
+			}
 			element(driver, eventFinishBtn).click();
 			TimeUnit.SECONDS.sleep(5);
 			element(driver, eventSaveBtn).click();
