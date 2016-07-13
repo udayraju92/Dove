@@ -1654,9 +1654,9 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, confirmSuspend).click();
 			waitForElementToVanish(driver, spinner);
-		
+
 			TimeUnit.SECONDS.sleep(8);
-			
+
 			Assert.assertEquals(element(driver, suspendedStatus).getText(), "SUSPENDED");			
 			ATUReports.add("Customer reference number has been suspended successfully : "+reason+ " : " +orderRef, "User should be able to suspend the subscription successfully", "Customer Reference Number "+orderRef+" has been suspended successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
@@ -1666,9 +1666,9 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}
-	
-	
-	
+
+
+
 	public void amendContract_Resume(WebDriver driver, String reason, String resumeStartFrom, String client, String brand, String referenceNumber) throws Exception
 	{
 		orderRef = referenceNumber;
@@ -1681,7 +1681,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, resume).click();
 			waitForElement(driver, selectReasonResume, 50);
-			
+
 			element(driver, selectReasonResume).click();
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, resumeReason(reason)).click();
@@ -1692,13 +1692,13 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			element(driver, resumeStartingSelect(resumeStartFrom)).click();
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, resumeStartingDate).sendKeys(DateTime.now().toString("dd/MM/yyyy"));
-			
+
 			element(driver, confirmResume).click();
 			waitForElementToVanish(driver, spinner);
-		
+
 			element(driver, customerHistory).click();
 			TimeUnit.SECONDS.sleep(8);	
-			
+
 			Assert.assertEquals(element(driver, resumeVerification).getText(), "RESUME_PENDING - "+reason);
 			ATUReports.add("Customer reference number has been resumed successfully : "+reason+ " : " +orderRef, "User should be able to resume the subsricption successfully", "Customer Reference Number "+orderRef+" has been resumed successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
@@ -1708,7 +1708,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}
-	
+
 	public void amendContract_RefundAmount(WebDriver driver, String amount, String reason, String payeeTitle, String customerFullName,String address1, String address2, String address3, String address4, String address5, String address6, String country, String postCode, String client, String brand, String referenceNumber) throws Exception
 	{
 		orderRef = referenceNumber;
@@ -1721,55 +1721,55 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, refundAmount).click();
 			waitForElement(driver, refundAmountValue, 50);
-			
+
 			element(driver, refundAmountValue).sendKeys(amount);
 			TimeUnit.SECONDS.sleep(3);
 			Select(element(driver, refundReason)).selectByVisibleText(reason);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails).click();
 			TimeUnit.SECONDS.sleep(8);
-			
+
 			element(driver, editChequeDetails_PayeeTitle).clear();
 			element(driver, editChequeDetails_PayeeTitle).sendKeys(payeeTitle);
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, editChequeDetails_PayeeName).clear();
 			element(driver, editChequeDetails_PayeeName).sendKeys(customerFullName);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine1).clear();
 			element(driver, editChequeDetails_AddressLine1).sendKeys(address1);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine2).clear();
 			element(driver, editChequeDetails_AddressLine2).sendKeys(address2);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine3).clear();
 			element(driver, editChequeDetails_AddressLine3).sendKeys(address3);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine4).clear();
 			element(driver, editChequeDetails_AddressLine4).sendKeys(address4);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine5).clear();
 			element(driver, editChequeDetails_AddressLine5).sendKeys(address5);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, editChequeDetails_AddressLine6).clear();
 			element(driver, editChequeDetails_AddressLine6).sendKeys(address6);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			Select(element(driver,editChequeDetails_Country)).selectByVisibleText(country);
-			
+
 			element(driver, editChequeDetails_PostCode).clear();
 			element(driver, editChequeDetails_PostCode).sendKeys(postCode);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver, saveChequeDetails).click();
 			TimeUnit.SECONDS.sleep(8);	
-			
+
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_Name).getText(), payeeTitle +" " +customerFullName);
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine1).getText(), address1);
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine2).getText(), address2);
@@ -1778,10 +1778,10 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine5).getText(), address5);
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_AddressLine6).getText(), address6);
 			Assert.assertEquals(element(driver, chequeDetailsVerifcation_PostCode).getText(), postCode);
-				
+
 			element(driver, confirmRefund).click();
 			waitForElementToVanish(driver, spinner);
-		
+
 			element(driver, refundDetails).click();
 			TimeUnit.SECONDS.sleep(8);	
 
@@ -1794,7 +1794,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}
-	
+
 	public void amendContract_MailingMethod(WebDriver driver, String mailingType, String client, String brand, String referenceNumber) throws Exception
 	{
 		orderRef = referenceNumber;
@@ -1807,16 +1807,16 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, mailingMethod).click();
 			waitForElement(driver, selectMailingMethod, 50);
-					
+
 			Select(element(driver, selectMailingMethod)).selectByVisibleText(mailingType);
 			TimeUnit.SECONDS.sleep(3);
-					
+
 			element(driver, confirmMailingMethod).click();
 			waitForElementToVanish(driver, spinner);
-		
+
 			element(driver, summary).click();
 			TimeUnit.SECONDS.sleep(8);	
-			
+
 			Assert.assertEquals(element(driver, verifyDispatchType).getText(), mailingType);
 			ATUReports.add("Mailing Method has been updated successfully : "+mailingType+ " : " +orderRef, "User should be able to update the mailing method for the subsricption successfully", "Mailing method for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 		}
@@ -1826,7 +1826,7 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}
-	
+
 	public void amendContract_ChangeTerm(WebDriver driver, String action, String reason, String issueType, String noOfIssues, String client, String brand, String referenceNumber) throws Exception
 	{
 		orderRef = referenceNumber;
@@ -1839,26 +1839,26 @@ public class CustomerServiceFunctions extends GeneralFunctions
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, changeTerm).click();
 			waitForElement(driver, changeTerm_Action, 50);
-					
+
 			Select(element(driver,changeTerm_Action)).selectByVisibleText(action);
 			TimeUnit.SECONDS.sleep(3);
-					
+
 			Select(element(driver,changeTerm_Reason)).selectByVisibleText(reason);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			Select(element(driver,changeTerm_IssueType)).selectByVisibleText(issueType);
 			TimeUnit.SECONDS.sleep(3);
-			
+
 			element(driver,changeTerm_Reason).clear();
 			element(driver,changeTerm_Reason).sendKeys(noOfIssues);
-			
+
 			element(driver, changeTerm_Save).click();
-			
+
 			waitForElementToVanish(driver, spinner);
-		
+
 			element(driver, customerHistory).click();
 			TimeUnit.SECONDS.sleep(8);	
-					
+
 			Assert.assertEquals(element(driver, changeTermVerification).getText(), "CHANGE_CONTRACT_TERM   -   "+reason);
 			Assert.assertEquals(element(driver, changeTermVerification1).getText(), "Change request for ADD_ENTITLEMENT with Issue Numbers : "+noOfIssues+", Issue Type : "+issueType+", Date : "+DateTime.now().toString("dd/MM/yyyy"));
 			ATUReports.add("Term has been updated successfully : "+reason+ " : " +orderRef, "User should be able to update the Term for the subsricption successfully", "Term for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
@@ -1866,6 +1866,414 @@ public class CustomerServiceFunctions extends GeneralFunctions
 		catch(Exception e)
 		{
 			ATUReports.add("Term has not been updated : "+reason+ " : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+
+	public void amendContract_PaymentDetails(WebDriver driver, String accountName, String accountNumber, String sortCode, String startDate, String chequeNumber, String cardNumber, String month, String year, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, paymentDetails).click();
+			TimeUnit.SECONDS.sleep(5);
+			if(payMethod.contains("DIRECT_DEBIT"))
+			{
+				element(driver,paymentDetails_DirectDebit_AccountName).sendKeys(accountName);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_DirectDebit_AccountNumber).sendKeys(accountNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_DirectDebit_SortCode).sendKeys(sortCode);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_DirectDebit_PaymentStartDate).clear();
+				element(driver,paymentDetails_DirectDebit_PaymentStartDate).sendKeys(startDate);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, paymentDetails_DirectDebit_SaveChangesButton).click();
+			}
+			else if(payMethod.contains("CHEQUE"))
+			{
+				element(driver,paymentDetails_Cheque_AccountName).sendKeys(accountName);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_AccountNumber).sendKeys(accountNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_SortCode).sendKeys(sortCode);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_ChequeNumber).sendKeys(chequeNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, paymentDetails_Cheque_SaveChangesButton).click();
+			}
+			else if(payMethod.contains("CREDIT_CARD"))
+			{
+				element(driver,paymentDetails_CreditCard_AccountName).sendKeys(accountName);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_CreditCard_CardNumber).sendKeys(cardNumber);
+				TimeUnit.SECONDS.sleep(3);
+				Select(element(driver,paymentDetails_CreditCard_ExpiryDate_Month)).selectByVisibleText(""+month+"");
+				TimeUnit.SECONDS.sleep(3);
+				Select(element(driver,paymentDetails_CreditCard_ExpiryDate_Year)).selectByVisibleText(""+year+"");
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, paymentDetails_CreditCard_SaveChangesButton).click();
+			}
+			TimeUnit.SECONDS.sleep(8);	
+			waitForElementToVanish(driver, spinner);
+
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+
+			Assert.assertEquals(element(driver, paymentDetailsVerification).getText(), "OTHER   -   Payment detail changed");
+			ATUReports.add("Payment Details have been updated successfully : " +orderRef, "User should be able to update the payment details for the subsricption successfully", "Payment Details for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Payment Details have not been updated : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+
+	public void amendContract_AddPayment(WebDriver driver, String accountName, String accountNumber, String sortCode, String startDate, String ddCollectionDate, String chequeNumber, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, addPayment).click();
+			TimeUnit.SECONDS.sleep(5);
+
+			if(payMethod.contains("DIRECT_DEBIT"))
+			{
+				element(driver,addPayment_DirectDebit_AccountName).sendKeys(accountName);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,addPayment_DirectDebit_AccountNumber).sendKeys(accountNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,addPayment_DirectDebit_SortCode).sendKeys(sortCode);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,addPayment_DirectDebit_PaymentStartDate).clear();
+				element(driver,addPayment_DirectDebit_PaymentStartDate).sendKeys(startDate);
+				TimeUnit.SECONDS.sleep(3);
+				Select(element(driver,addPayment_DirectDebit_PreferredDDCollectionDate)).selectByVisibleText(ddCollectionDate);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, addPayment_Submit).click();
+			}
+			else if(payMethod.contains("CHEQUE"))
+			{
+				element(driver,paymentDetails_Cheque_AccountName).sendKeys(accountName);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_AccountNumber).sendKeys(accountNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_SortCode).sendKeys(sortCode);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver,paymentDetails_Cheque_ChequeNumber).sendKeys(chequeNumber);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, paymentDetails_Cheque_SaveChangesButton).click();
+			}
+			else if(payMethod.contains("CREDIT_CARD"))
+			{
+
+			}
+			waitForElementToVanish(driver, spinner);
+
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+
+			Assert.assertEquals(element(driver, changeTermVerification).getText(), "CHANGE_CONTRACT_TERM   -   ");
+			
+			ATUReports.add("Add Payment has been processed successfully : " +orderRef, "User should be able to process the Add Payment for the subsricption successfully", "Add Payment for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Add Payment has not been updated : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+
+	public void amendContract_ChangeStartIssue(WebDriver driver, String issueNumber, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, changeStartIssue).click();
+			TimeUnit.SECONDS.sleep(5);
+
+			Select(element(driver,selectStartIssue)).selectByVisibleText(issueNumber);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, changeContract).click();
+			waitForElementToVanish(driver, spinner);
+
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+
+			Assert.assertTrue(element(driver, changeStartIssueVerification).isDisplayed());
+			
+			ATUReports.add("Start Issue has been updated successfully : " +orderRef, "User should be able to update the Start Issue for the subsricption successfully", "Start Issue for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Start Issue has not been updated : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void amendContract_CancelImmediately(WebDriver driver, String reason, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, cancelImmediately).click();
+			TimeUnit.SECONDS.sleep(5);
+
+			Select(element(driver,selectStartIssue)).selectByVisibleText(reason);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, changeContract).click();
+			waitForElementToVanish(driver, spinner);
+
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+
+			Assert.assertEquals(element(driver, changeTermVerification).getText(), "CHANGE_CONTRACT_TERM   -   ");
+			
+			ATUReports.add("Start Issue has been updated successfully : " +orderRef, "User should be able to update the Start Issue for the subsricption successfully", "Start Issue for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Start Issue has not been updated : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	public void amendContract_CancelOnExpiry(WebDriver driver, String reason, String client, String brand, String referenceNumber) throws Exception
+	{
+		orderRef = referenceNumber;
+		fetchDetailsCs(driver, client, brand);
+		try
+		{
+			element(driver, transactionEnquiry).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, amendContract).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, cancelOnExpiry).click();
+			TimeUnit.SECONDS.sleep(5);
+
+			Select(element(driver,cancellationReasonOnExpiry)).selectByVisibleText(reason);
+			TimeUnit.SECONDS.sleep(3);
+			
+			element(driver, confirmCancelonExpiry).click();
+			waitForElementToVanish(driver, spinner);
+
+			element(driver, customerHistory).click();
+			TimeUnit.SECONDS.sleep(8);	
+
+			Assert.assertEquals(element(driver, changeTermVerification).getText(), "CHANGE_CONTRACT_TERM   -   ");
+			
+			ATUReports.add("Start Issue has been updated successfully : " +orderRef, "User should be able to update the Start Issue for the subsricption successfully", "Start Issue for Customer Reference Number "+orderRef+" has been updated successfully", LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Start Issue has not been updated : " +orderRef, LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+	
+	
+
+	public void differentDeliveryAddress(WebDriver driver, String client, String brand, String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String deliverypostalcode, String deliveryAddress, String custName, String cardNum1, String date, String year) throws Exception
+	{
+		try
+		{
+			element(driver, customerServiceLink).click();	
+			TimeUnit.SECONDS.sleep(3);
+			for (String winHandle : driver.getWindowHandles()) 
+			{
+				driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+			}
+			Select(element(driver, clientSelect)).selectByVisibleText(client);
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, brandSelect(brand)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}		
+			element(driver, newSubscription).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, promotionName).sendKeys(promotion);
+			element(driver, findPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, offerCard(cardType)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, title).sendKeys(custTitle);
+			element(driver, firstName).sendKeys(firstname);
+			element(driver, surName).sendKeys(surname);
+			element(driver, postCode).sendKeys(postalcode);
+			element(driver, lookupAddress).click();
+			TimeUnit.SECONDS.sleep(5);
+			Select(element(driver, selectAddress)).selectByVisibleText(address);
+			TimeUnit.SECONDS.sleep(5);
+
+			element(driver, differentDeliveryAddress).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, deliveryPostCode).sendKeys(deliverypostalcode);
+			element(driver, deliveryLookupAddress).click();
+			TimeUnit.SECONDS.sleep(5);	
+			Select(element(driver, selectDeliveryAddress)).selectByVisibleText(deliveryAddress);
+			TimeUnit.SECONDS.sleep(5);
+
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+			TimeUnit.SECONDS.sleep(2);
+
+			if (element(driver, verifyBillingAddress).isDisplayed() && element(driver, verifyDeliveryAddress).isDisplayed())
+			{
+				Assert.assertTrue(true, "Different Delivery address is present for the subscription");
+			}
+			else
+			{
+				Assert.assertTrue(false, "Different Delivery address is not present for the subscription");
+			}
+
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			orderRef = element(driver, orderRefNumber).getText();
+
+			ATUReports.add("New subscription has been done successfully using differnt delivery address with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do a new subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+			takeScreenShotOnFailure(driver, testName);
+		}
+	}
+
+	public void getDefaultPromotion(WebDriver driver, String client, String brand, String promotion, String cardType, String custTitle, String firstname, String surname, String postalcode, String address, String custName, String cardNum1, String date, String year) throws Exception
+	{
+		try
+		{
+			element(driver, customerServiceLink).click();	
+			TimeUnit.SECONDS.sleep(3);
+			for (String winHandle : driver.getWindowHandles()) 
+			{
+				driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+			}
+			Select(element(driver, clientSelect)).selectByVisibleText(client);
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, brandSelect(brand)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}		
+			element(driver, newSubscription).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, getDefaultPromotion).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, selectPromotion(promotion)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, promotionNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, offerCard(cardType)).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, title).sendKeys(custTitle);
+			element(driver, firstName).sendKeys(firstname);
+			element(driver, surName).sendKeys(surname);
+			element(driver, postCode).sendKeys(postalcode);
+			element(driver, lookupAddress).click();
+			TimeUnit.SECONDS.sleep(5);
+			Select(element(driver, selectAddress)).selectByVisibleText(address);
+			TimeUnit.SECONDS.sleep(5);
+
+
+			element(driver, custNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			try
+			{
+				element(driver, custAssociationNextBtn).isDisplayed();
+				element(driver, custAssociationNextBtn).click();
+			}
+			catch(Exception e)
+			{
+				// No Action Required
+			}
+
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, issueCalenderNextBtn).click();
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, customerName).sendKeys(custName);
+			TimeUnit.SECONDS.sleep(2);
+			element(driver, cardNumber).sendKeys(cardNum1);
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryDate)).selectByVisibleText(""+date+"");
+			TimeUnit.SECONDS.sleep(2);
+			Select(element(driver, expiryYear)).selectByVisibleText(""+year+"");	
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, checkoutNextBtn).click();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, orderRefNumber).isDisplayed();
+			orderRef = element(driver, orderRefNumber).getText();
+
+			ATUReports.add("New subscription has been done successfully using default promotion with order reference number as: "+orderRef, "Promotion name: "+ promotion,"Order Reference",orderRef, LogAs.PASSED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+		}
+		catch(Exception e)
+		{
+			ATUReports.add("Unable to do a new subscription", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 			takeScreenShotOnFailure(driver, testName);
 		}
 	}

@@ -16,10 +16,10 @@ public class CustomerServiceObjects
 	public By logIn = By.id("id_loginForm:id_loginButton");
 	public By logOut = By.linkText("Logout");
 
-	
+
 	public By spinner = By.xpath("//*[contains(@id,'SpinnerGif')]");
-	
-	
+
+
 	/* Customer Service Objects */
 	public By customerServiceLink = By.linkText("Customer Services");
 	public By clientSelect = By.id("brandSearchForm:client");
@@ -35,6 +35,7 @@ public class CustomerServiceObjects
 	public By newSubscription = By.id("newSubscriptionLink");	
 	public By promotionName = By.id("form:id_promoNameInputText");
 	public By findPromotion = By.xpath("//*[contains(@value,'Find Promotion')]");
+	public By getDefaultPromotion = By.id("form:id_getDefaultPromotionButton");
 
 	public By selectPromotion(String promotion)
 	{
@@ -42,6 +43,7 @@ public class CustomerServiceObjects
 		return selectPromotion;
 	}
 	public By promotionNextBtn = By.id("form:id_selectPromotionNext");
+
 
 	public By offerCard(String card)
 	{
@@ -64,6 +66,12 @@ public class CustomerServiceObjects
 	public By expiryYear = By.xpath("//div[@id='id_checkoutForm:id_decorateCreditCardExpiryYear:j_id202']/select");
 	public By checkoutNextBtn = By.id("id_checkoutForm:id_nextButton");
 	public By orderRefNumber = By.id("id_orderRef");
+	public By differentDeliveryAddress = By.id("id_newCustomerDetailsForm:id_deliveryAddressTogglePanel_header");
+	public By deliveryPostCode = By.id("id_newCustomerDetailsForm:id_customerDeliveryPostCodeDecorator:id_customerDeliveryPostCode");
+	public By deliveryLookupAddress = By.id("id_newCustomerDetailsForm:id_customerDeliveryAddressLookupButton");
+	public By selectDeliveryAddress = By.name("id_newCustomerDetailsForm:j_id186");
+	public By verifyDeliveryAddress = By.id("//*[@id='issueCalendarForm:j_id135']");
+	public By verifyBillingAddress = By.id("//*[@id='issueCalendarForm:j_id146']");
 
 	// Verify the newly created order
 	public By homeLink = By.linkText("Main Menu");
@@ -85,7 +93,7 @@ public class CustomerServiceObjects
 	public By verifyCustomerRef = By.id("summaryform:id_textCustOptionRef");
 	public By verifyContractStatus = By.id("summaryform:id_currContractStatustext");
 	public By verifySubType = By.id("summaryform:id_textCustOptionSubcriptionType");
-	public By paymentMethod = By.xpath("//*[contains(text(),'Payment Method')]/parent::td/following::td/span");
+	public By paymentMethod = By.xpath("//*[contains(text(),'Payment Method')]/parent::td/following::td/span[contains(@id,'type')]");
 	public By paymentStatus = By.id("summaryform:id_currcontractpaymentStatustext");
 	public By renewalStatus = By.id("summaryform:id_currcontractrenewalStatustext");
 	public By subscriberRole = By.id("summaryform:id_textCustOptionSubcriberType");
@@ -151,10 +159,10 @@ public class CustomerServiceObjects
 	//Transaction History
 	public By transactionEnquiry = By.linkText("Transaction Enquiry");
 	public By amendContract = By.id("transEnquiryform:id_transactionEnquiry_amend_contract_tab_lbl");
-	
+
 	//Customer History
 	public By customerHistory = By.linkText("Customer History");
-	
+
 	//Amend Contract - System Letter
 	public By systemLetter = By.id("transEnquiryform:id_amendContractButtonSystemLetter");
 	public By sendLetter(String letterName)
@@ -163,13 +171,13 @@ public class CustomerServiceObjects
 		return sendLetter;
 	}
 	public By sendLetterVerification = By.xpath("//div[text()='The letter has been sent for processing']");
-	
+
 	//Amend Contract - Change Start Issue
 	public By changeStartIssue = By.id("transEnquiryform:id_amendContractButtonChangePreferredStartIssue");
 	public By selectStartIssue = By.name("transEnquiryform:j_id421");
 	public By changeContract = By.id("transEnquiryform:id_amendStartIssueButton");
-	
-	
+	public By changeStartIssueVerification = By.xpath("//div[contains(text(),'The contract has been changed successfully')]");
+
 	//Amend Contract - Suspend
 	public By suspend = By.id("transEnquiryform:id_amendContractButtonShowSuspend");
 	public By selectReasonSuspend = By.id("transEnquiryform:id_amendContractSuspendReasoncomboboxButton");
@@ -178,11 +186,11 @@ public class CustomerServiceObjects
 		By selectReason = By.xpath("//span[contains(text(),'"+reason+"') and contains(@class,'rich-combobox-item')]");
 		return selectReason;
 	}
-	
+
 	public By confirmSuspend = By.id("transEnquiryform:id_amendContractButtonConfirmSuspend");
 	public By suspendStartingFrom = By.xpath("//input[contains(@id,'InputDate')]");
 	public By suspendedStatus = By.xpath("//td[./*[./*[contains(@id,'arrowImg') and contains(@style,'inline')]]]/following-sibling::td[4]/div[1]/span");
-	
+
 	//Amend Contract - Resume
 	public By resume = By.id("transEnquiryform:id_amendContractButtonShowResume");
 	public By selectReasonResume = By.id("transEnquiryform:id_amendContractResumeReasoncomboboxButton");
@@ -200,16 +208,16 @@ public class CustomerServiceObjects
 	public By resumeStartingDate = By.id("transEnquiryform:j_id1038InputDate");
 	public By confirmResume = By.id("transEnquiryform:id_amendContractButtonConfirmResume");
 	public By resumeVerification = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[3]");
-	
+
 	//Amend Contract - Refund Details
 	public By refundDetails = By.id("transEnquiryform:id_amendContractButtonRefundDetails");
-	
+
 	//Amend Contract - Mailing Method
 	public By mailingMethod = By.id("transEnquiryform:id_amendContractButtonMailingChange");
 	public By selectMailingMethod = By.name("transEnquiryform:j_id1018");
 	public By confirmMailingMethod = By.id("transEnquiryform:id_amendMailingMethod");
 	public By verifyDispatchType = By.id("summaryform:id_textCustOptionDispatchType");
-	
+
 	//Amend Contract - Change Term
 	public By changeTerm = By.id("transEnquiryform:id_amendContractButtonTermChange");
 	public By changeTerm_Action = By.id("transEnquiryform:id_amendTermActionMenu");
@@ -219,29 +227,71 @@ public class CustomerServiceObjects
 	public By changeTerm_Save = By.xpath("//input[@type='submit' and @value='Save']");
 	public By changeTermVerification = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[3]");
 	public By changeTermVerification1 = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[4]");
-	
+
 	//Amend Contract - Payment Details
 	public By paymentDetails = By.id("transEnquiryform:id_amendContractButtonPaymentDetails");
-	
+	// Direct Debit Reference Number
+	public By paymentDetails_DirectDebit_AccountName = By.id("transEnquiryform:setClientName");
+	public By paymentDetails_DirectDebit_AccountNumber = By.id("transEnquiryform:setClientSageReference");
+	public By paymentDetails_DirectDebit_SortCode = By.id("transEnquiryform:id_inputTextSortCode");
+	public By paymentDetails_DirectDebit_PaymentStartDate = By.id("transEnquiryform:startDateInputDate");
+	public By paymentDetails_DirectDebit_SaveChangesButton = By.id("transEnquiryform:id_DDSubmitAccountChanges");
+
+	//Cheque Payment Reference Number
+	public By paymentDetails_Cheque_AccountName = By.id("transEnquiryform:id_chqAccName");
+	public By paymentDetails_Cheque_AccountNumber = By.id("transEnquiryform:id_chqAccNo");
+	public By paymentDetails_Cheque_SortCode = By.id("transEnquiryform:id_chqSortCode");
+	public By paymentDetails_Cheque_ChequeNumber = By.id("transEnquiryform:id_inputTextChqNo");
+	public By paymentDetails_Cheque_SaveChangesButton = By.id("transEnquiryform:id_ChqSubmitDetailsChanges");
+
+	// Credit Card Reference Number
+	public By paymentDetails_CreditCard_AccountName = By.id("transEnquiryform:id_ccCardName");
+	public By paymentDetails_CreditCard_CardNumber = By.id("transEnquiryform:id_cardNumber");
+	public By paymentDetails_CreditCard_ExpiryDate_Month = By.id("transEnquiryform:id_dateExpirySelectMonth");
+	public By paymentDetails_CreditCard_ExpiryDate_Year = By.id("transEnquiryform:id_dateExpirySelectYear");
+	public By paymentDetails_CreditCard_StartDate_Month = By.id("transEnquiryform:id_dateExpirySelectMonth");
+	public By paymentDetails_CreditCard_StartDate_Year = By.id("transEnquiryform:id_dateExpirySelectYear");
+	public By paymentDetails_CreditCard_SaveChangesButton = By.id("transEnquiryform:id_CCSubmitChanges");
+
+	public By paymentDetailsVerification = By.xpath("//table[@id='historyform:j_id69']/tbody/tr[last()]/td[3]");
+
 	//Amend Contract - Add Payment
 	public By addPayment= By.id("transEnquiryform:id_amendContractButtonAddPayment");
-	
-	//Amend Contract - Unpay
-	public By unpay = By.id("transEnquiryform:id_amendContractButtonUnpay");
-		
+	public By paymentType = By.id("transEnquiryform:id_pymtMethodTypes");
+	public By addPayment_DirectDebit_AccountName = By.id("transEnquiryform:id_ddAccNameAddPymt");
+	public By addPayment_DirectDebit_AccountNumber = By.id("transEnquiryform:id_ddAccNoAddPymt");
+	public By addPayment_DirectDebit_SortCode = By.id("transEnquiryform:id_inputTextSortCodeAddPymt");
+	public By addPayment_DirectDebit_PaymentStartDate = By.id("transEnquiryform:id_startDateAddPymtInputDate");
+	public By addPayment_DirectDebit_PreferredDDCollectionDate = By.name("transEnquiryform:id_pDDCollectionDateDecoratorAddPymt:j_id327");
+	public By addPayment_Submit = By.id("transEnquiryform:id_submitPayment");
+
+
 	//Amend Contract - Cancel Immediately
 	public By cancelImmediately = By.id("transEnquiryform:id_amendContractButtonShowCancel");
-	
+	public By chequeRefundCheckBox = By.id("transEnquiryform:_id_chequeRefundCBox");
+	public By immediateCancellationReason = By.id("transEnquiryform:_id_amendImmediateCancelReason");
+	public By immediateCancellationrefundAmount = By.id("transEnquiryform:j_id448:0:_cancelRefund");
+	public By immadiateCancellationConfirm = By.id("transEnquiryform:_id_amendContractButtonConfirmContractCancelleation");
+
+	public By cancelImmediatelyVerification(String refundAmount)
+	{
+		By cancelImmediatelyVerification = By.xpath("//div[text()='CONTRACT CANCELLED SUCCESSFULLY.  Total Refunded "+refundAmount+"']");
+		return cancelImmediatelyVerification;
+	}
 	//Amend Contract - Cancel on Expiry
 	public By cancelOnExpiry = By.id("transEnquiryform:id_amendContractButtonCancelOnExpiry");
-	
-	//Amend Contract - Refund Amount
+	public By cancellationReasonOnExpiry = By.id("transEnquiryform:_id_amendImmediateExpiryCancelReason");
+	public By confirmCancelonExpiry = By.id("transEnquiryform:_id_amendContractButtonConfirmExpiry");
+	public By cancelOnExpiryVerification = By.xpath("//div[text()='CONTRACT SET TO CANCEL ON EXPIRE SUCCESSFULLY']");
+
+
+	//	Amend Contract - Refund Amount
 	public By refundAmount = By.id("transEnquiryform:id_amendContractButtonRefundAmount");
 	public By refundAmountValue = By.id("transEnquiryform:overiderefund");
 	public By refundReason = By.id("transEnquiryform:id_refundReason");
 	public By confirmRefund = By.id("transEnquiryform:id_amendContractButtonConfirmContractRefund");
 	public By refundDetailsVerification = By.xpath("//table[@id='transEnquiryform:clientTable']/tbody/tr[last()]/td[2]");
-	
+
 	public By editChequeDetails = By.xpath("//input[@type='submit' and contains(@value,'Edit Cheque Details')]");
 	public By saveChequeDetails = By.xpath("//input[@type='submit' and contains(@value,'Save Cheque Details')]");
 	public By editChequeDetails_PayeeTitle = By.id("transEnquiryform:amtrefundform:addInputPayeeTitle_acr");
@@ -254,7 +304,7 @@ public class CustomerServiceObjects
 	public By editChequeDetails_AddressLine6 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[6]/td[2]/input");	
 	public By editChequeDetails_Country = By.name("transEnquiryform:amtrefundform:j_id1102");			
 	public By editChequeDetails_PostCode = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[8]/td[2]/input");
-	
+
 	public By chequeDetailsVerifcation_Name = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[1]/tbody/tr/td[2]");
 	public By chequeDetailsVerifcation_AddressLine1 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[1]/td[2]");
 	public By chequeDetailsVerifcation_AddressLine2 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[2]/td[2]");
@@ -263,5 +313,5 @@ public class CustomerServiceObjects
 	public By chequeDetailsVerifcation_AddressLine5 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[5]/td[2]");
 	public By chequeDetailsVerifcation_AddressLine6 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[6]/td[2]");
 	public By chequeDetailsVerifcation_PostCode = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[8]/td[2]");
-	
+
 }
