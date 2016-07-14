@@ -72,6 +72,12 @@ public class CustomerServiceObjects
 	public By selectDeliveryAddress = By.name("id_newCustomerDetailsForm:j_id186");
 	public By verifyDeliveryAddress = By.id("//*[@id='issueCalendarForm:j_id135']");
 	public By verifyBillingAddress = By.id("//*[@id='issueCalendarForm:j_id146']");
+	
+	public By demographics(String demographicProperty1, String demographicProperty2, String demographicProperty3)
+	{
+		By demographics = By.xpath(".//tr[td[contains(@id,'j_id214') and contains(text(),'"+demographicProperty1+"')] and td[contains(@id,'j_id216') and contains(text(),'"+demographicProperty2+"')] and  td[contains(@id,'j_id218') and contains(text(),'"+demographicProperty3+"')]]/td[4]/input");
+		return demographics;
+	}
 
 	// Verify the newly created order
 	public By homeLink = By.linkText("Main Menu");
@@ -115,6 +121,29 @@ public class CustomerServiceObjects
 	public By gSelectAddress = By.name("id_newCustomerDetailsForm:j_id147");
 	public By gSaveButton = By.name("id_newCustomerDetailsForm:id_saveRecipientCustomerButton");
 	public By gAddMoreButton = By.id("id_newCustomerDetailsForm:id_addNewRecipientCustomerButton");
+	public By gRecipientName(String gTitle, String gFirstName, String gSurName)
+	{
+		By gRecipientName = By.xpath("//div[text()='"+gTitle+" "+gFirstName+" "+gSurName+"' and contains(@id,'header')]");
+		return gRecipientName;
+	}
+	
+	public By gEditButton(String gTitle, String gFirstName, String gSurName)
+	{
+		By gEditButton = By.xpath("//div[text()='"+gTitle+" "+gFirstName+" "+gSurName+"']/following-sibling::*[contains(@id,'body')]/table/tbody//tr/td/input[@value='Edit']");
+		return gEditButton;
+	}
+	
+	public By gRemoveButton(String gTitle, String gFirstName, String gSurName)
+	{
+		By gRemoveButton = By.xpath("//div[text()='"+gTitle+" "+gFirstName+" "+gSurName+"']/following-sibling::*[contains(@id,'body')]/table/tbody//tr/td/input[@value='Remove']");
+		return gRemoveButton;
+	}
+	
+	public By gRecipientNameOrderDetails(String gTitle, String gFirstName, String gSurName)
+	{
+		By gRecipientName = By.xpath("//div[text()='"+gTitle+" "+gFirstName+" "+gSurName+"' and contains(@id,'header') and contains(@id,'issueCalendarForm')]");
+		return gRecipientName;
+	}
 	
 	//For product only subscription
 	public By proRadioButton = By.id("form:id_subscriptionOption:1");
@@ -266,6 +295,7 @@ public class CustomerServiceObjects
 	public By addPayment_DirectDebit_PaymentStartDate = By.id("transEnquiryform:id_startDateAddPymtInputDate");
 	public By addPayment_DirectDebit_PreferredDDCollectionDate = By.name("transEnquiryform:id_pDDCollectionDateDecoratorAddPymt:j_id327");
 	public By addPayment_Submit = By.id("transEnquiryform:id_submitPayment");
+	public By addPaymentVerification = By.xpath("//div[text()='Payment has been sent for processing']");
 
 
 	//Amend Contract - Cancel Immediately
@@ -275,11 +305,8 @@ public class CustomerServiceObjects
 	public By immediateCancellationrefundAmount = By.id("transEnquiryform:j_id448:0:_cancelRefund");
 	public By immadiateCancellationConfirm = By.id("transEnquiryform:_id_amendContractButtonConfirmContractCancelleation");
 
-	public By cancelImmediatelyVerification(String refundAmount)
-	{
-		By cancelImmediatelyVerification = By.xpath("//div[text()='CONTRACT CANCELLED SUCCESSFULLY.  Total Refunded "+refundAmount+"']");
-		return cancelImmediatelyVerification;
-	}
+	public By cancelImmediatelyVerification = By.xpath("//div[contains(text(),'CONTRACT CANCELLED SUCCESSFULLY.  Total Refunded')]");
+		
 	//Amend Contract - Cancel on Expiry
 	public By cancelOnExpiry = By.id("transEnquiryform:id_amendContractButtonCancelOnExpiry");
 	public By cancellationReasonOnExpiry = By.id("transEnquiryform:_id_amendImmediateExpiryCancelReason");
@@ -315,5 +342,28 @@ public class CustomerServiceObjects
 	public By chequeDetailsVerifcation_AddressLine5 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[5]/td[2]");
 	public By chequeDetailsVerifcation_AddressLine6 = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[6]/td[2]");
 	public By chequeDetailsVerifcation_PostCode = By.xpath("//*[@id='transEnquiryform:id_rfcheque_address_body']/table[2]/tbody/tr[8]/td[2]");
-
+	
+	// Customer Events
+	public By customerEvents = By.linkText("Customer Events");
+	public By customerEvents_AllEventsTab = By.xpath("//*[@id='customerEventsform:id_allEventsTab_lbl' and text()='All Events']");
+	public By customerEvents_IssuesTab = By.xpath("//*[@id='customerEventsform:j_id181_lbl' and text()='Issues']");
+	public By customerEvents_LettersTab = By.xpath("//*[@id='customerEventsform:id_letterEventsTab_lbl' and text()='Letters']");
+	public By customerEvents_CollectionsTab = By.xpath("//*[@id='customerEventsform:j_id254_lbl' and text()='Collections']");
+	public By customerEvents_ProductsTab = By.xpath("//*[@id='customerEventsform:j_id281_lbl' and text()='Products']");
+	
+	// Customer Events verification
+	public By allIssues_FutureEventsTable = By.xpath("//*[@id='customerEventsform:futureEventsTable']/thead/tr[1]/th[text()='Future Events']");
+	public By allIssues_FutureEventsTableVerification = By.xpath("//table[@id='customerEventsform:futureEventsTable']/thead/tr[th[1]/div/span[text()='Date'] and th[2]/div[text()='Brand'] and th[3]/div[text()='Amount'] and th[4]/div[text()='Deliverable'] and th[5]/div[text()='Status']  and th[6]/div/span[text()='Event Type']  and th[7]/div/span[text()='Destination']]");
+	public By allIssues_ReceivedEventsVerification = By.xpath("//table[@id='customerEventsform:receivedEventsTable']/thead/tr[th[1]/div/span[text()='Date'] and th[2]/div[text()='Brand'] and th[3]/div[text()='Amount'] and th[4]/div[text()='Deliverable'] and th[5]/div[text()='Status']  and th[6]/div/span[text()='Event Type']  and th[7]/div/span[text()='Destination']]");
+	public By allIssues_ReceivedEventsTable = By.xpath("//*[@id='customerEventsform:receivedEventsTable']/thead/tr[1]/th[text()='Received Events']");
+	
+	public By issues_FutureEventsTable = By.xpath("//*[@id='customerEventsform:futureIssueEventsTable']/thead/tr[1]/th[text()='Future Events']");
+	public By issues_FutureEventsTableVerification = By.xpath("//table[contains(@id,'customerEventsform:futureIssueEventsTable')]/thead/tr[th[1]/div/span[text()='Date'] and th[2]/div[text()='Brand'] and th[3]/div[text()='Issue'] and th[4]/div[text()='Type'] and th[5]/div[text()='Contract']]");
+	public By letters_FutureEventsTable = By.xpath("//*[@id='customerEventsform:futureLetterEventsTable']/thead/tr[1]/th[text()='Future Events']");
+	public By letters_FutureEventsTableVerification = By.xpath("//table[contains(@id,'customerEventsform:futureLetterEventsTable')]/thead/tr[th[1]/div[text()='Description'] and th[2]/div[text()='Date'] and th[3]/div[text()='Contract'] and th[4]/div[text()='Destination']]");
+	public By letters_ReceivedEventsTable = By.xpath("//*[@id='customerEventsform:receivedLetterEventsTable']/thead/tr[1]/th[text()='Received Events']");
+	public By letters_ReceivedEventsTableVerification = By.xpath("//*[contains(@id,'customerEventsform:receivedLetterEventsTable')]/thead/tr[th[1]/div[text()='Description'] and th[2]/div[text()='Date'] and th[3]/div[text()='Contract'] and th[4]/div[text()='Destination']]");
+	
+	public By collections_ReceivedEventsTable = By.xpath("//*[@id='customerEventsform:receivedCollectionsEventsTable']/thead/tr[1]/th[text()='Received Events']");
+	public By collections_ReceivedEventsTableVerification = By.xpath("//*[@id='customerEventsform:receivedCollectionsEventsTable']/thead/tr[th[1]/div/span[text()='Date'] and th[2]/div[text()='Amount'] and th[3]/div[text()='Contract'] and th[4]/div[text()='Status']]");
 }
