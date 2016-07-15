@@ -109,7 +109,7 @@ public class Schedules extends SchedulesFunctions
 	{ 				
 		testName = method.getName();
 		wrapper.setParameter(ExcelConstants.FILE_PATH, System.getProperty("user.dir").concat(props.getProperty("testDataFilePath")));
-		wrapper.setParameter(ExcelConstants.SHEET_NAME, "Account Admin");
+		wrapper.setParameter(ExcelConstants.SHEET_NAME, "Schedules");
 		wrapper.setParameter(ExcelConstants.TESTCASE_NAME, testName);
 		wrapper.setParameter(ExcelConstants.TESTCASE_START_ELEMENT, "_START");
 		wrapper.setParameter(ExcelConstants.TESTCASE_END_ELEMENT, "_END");
@@ -124,7 +124,7 @@ public class Schedules extends SchedulesFunctions
 	 * @throws Exception 
 	 * 
 	 */
-	//@Test(priority=0, dataProvider="databinding")
+	@Test(priority=0, dataProvider="databinding")
 	public void optimisticStandardSchedule(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Creating a new standard optimistic Schedule");
