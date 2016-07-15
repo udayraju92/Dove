@@ -32,7 +32,7 @@ import automation_home.ddf.wrapperimpl.ExcelWrapper;
 
 
 /**
- * Class file to write the test scripts for the Account Admin scenarios
+ * Class file to write the test scripts for the Renewal Strategy scenarios
  * @author Testhouse
  *
  */
@@ -92,7 +92,7 @@ public class RenewalStartegy extends RenewalStrategyFunctions
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);   
 		ATUReports.setWebDriver(driver);
 		ATUReports.indexPageDescription = "Dovetail Automation";
-		ATUReports.currentRunDescription ="Account Admin";
+		ATUReports.currentRunDescription ="Renewal Strategy";
 		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");
 	}
 
@@ -109,7 +109,7 @@ public class RenewalStartegy extends RenewalStrategyFunctions
 	{ 				
 		testName = method.getName();
 		wrapper.setParameter(ExcelConstants.FILE_PATH, System.getProperty("user.dir").concat(props.getProperty("testDataFilePath")));
-		wrapper.setParameter(ExcelConstants.SHEET_NAME, "Account Admin");
+		wrapper.setParameter(ExcelConstants.SHEET_NAME, "Renewal Strategy");
 		wrapper.setParameter(ExcelConstants.TESTCASE_NAME, testName);
 		wrapper.setParameter(ExcelConstants.TESTCASE_START_ELEMENT, "_START");
 		wrapper.setParameter(ExcelConstants.TESTCASE_END_ELEMENT, "_END");
@@ -124,8 +124,24 @@ public class RenewalStartegy extends RenewalStrategyFunctions
 	 * @throws Exception 
 	 * 
 	 */
-	@Test(priority=0, dataProvider="databinding")
+	//@Test(priority=0, dataProvider="databinding")
 	public void cARenewalStartegy(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Creating a new CA Renewal Strategy");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Creating a Renewal Strategy */
+		renewalStrategy(driver, h.get("Client"), h.get("Brand"), h.get("Name"), h.get("Description"), h.get("StartDate"),h.get("EndDate") , h.get("ExpiryDate"), h.get("Active"), h.get("RenewalType"), h.get("Promotion"), h.get("Offer"), h.get("When"), h.get("DeliveryType"), h.get("Delivery"), h.get("Destination"));
+		
+	}
+	//@Test(priority=1, dataProvider="databinding")
+	public void nCARenewalStartegy(HashMap<String, String> h) throws Exception
 	{
 		ATUReports.setTestCaseReqCoverage("Creating a new standard optimistic Schedule");
 		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
@@ -136,8 +152,54 @@ public class RenewalStartegy extends RenewalStrategyFunctions
 		TimeUnit.SECONDS.sleep(3);
 		login(driver, h.get("Username"), h.get("Password"), testName);
 
-		/* Creating a new Standard Schedule */
-		renewalStartegy(driver, h.get("Client"), h.get("Brand"), h.get("Name"), h.get("Description"), h.get("StartDate"),h.get("EndDate") , h.get("ExpiryDate"), h.get("Active"), h.get("RenewalType"), h.get("Promotion"), h.get("Offer"));
+		/* Creating a Non continuous Renewal Strategy */
+		renewalStrategy(driver, h.get("Client"), h.get("Brand"), h.get("Name"), h.get("Description"), h.get("StartDate"),h.get("EndDate") , h.get("ExpiryDate"), h.get("Active"), h.get("RenewalType"), h.get("Promotion"), h.get("Offer"), h.get("When"), h.get("DeliveryType"), h.get("Delivery"), h.get("Destination"));
+	}
+	//@Test(priority=2, dataProvider="databinding")
+	public void stepUpRenewalStrategy(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Creating a new standard optimistic Schedule");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Creating a Non continuous Renewal Strategy */
+		renewalStrategy(driver, h.get("Client"), h.get("Brand"), h.get("Name"), h.get("Description"), h.get("StartDate"),h.get("EndDate") , h.get("ExpiryDate"), h.get("Active"), h.get("RenewalType"), h.get("Promotion"), h.get("Offer"), h.get("When"), h.get("DeliveryType"), h.get("Delivery"), h.get("Destination"));
+	}
+	@Test(priority=3, dataProvider="databinding")
+	public void multiStageRenewalStrategy(HashMap<String, String> h) throws Exception
+	{
+		ATUReports.setTestCaseReqCoverage("Creating a new standard optimistic Schedule");
+		ATUReports.setAuthorInfo("Automation Tester", Utils.getCurrentTime(),"1.0");	
+
+		/* Login Section */
+		driver.get(props.getProperty("baseUrl"));
+		driver.manage().window().maximize();
+		TimeUnit.SECONDS.sleep(3);
+		login(driver, h.get("Username"), h.get("Password"), testName);
+
+		/* Creating a Non continuous Renewal Strategy */
+		renewalStrategy(driver, h.get("Client"), h.get("Brand"), h.get("Name"), h.get("Description"), h.get("StartDate"),h.get("EndDate") , h.get("ExpiryDate"), h.get("Active"), h.get("RenewalType"), h.get("Promotion"), h.get("Offer"), h.get("When"), h.get("DeliveryType"), h.get("Delivery"), h.get("Destination"));
+	}
+	/**
+	 * Method which is used to quit all the browser instances after execution
+	 * @throws Exception
+	 * 
+	 */
+	@AfterMethod(alwaysRun=true)
+	public void tearDown() throws Exception 
+	{
+		element(driver, logOut).click();	
+		TimeUnit.SECONDS.sleep(2);
+
+		for(WebDriver d : drivers)
+		{
+			d.quit();
+		}
 	}
 
 }

@@ -33,7 +33,7 @@ public class RenewalStrategyFunctions extends RenewalStrategyObjects
 	 * @param dest Object for selecting the destination option from the list
 	 * @throws Exception To throw an exception whenever an unexpected failure occurs
 	 */
-	public void renewalStartegy(WebDriver driver, String client, String brand,String name, String description, String starDate, String enDate, String expDate, String act, String typeRenewal, String promotion, String offer) throws Exception
+	public void renewalStrategy(WebDriver driver, String client, String brand,String name, String description, String starDate, String enDate, String expDate, String act, String typeRenewal, String promotion, String offer, String whe, String delTyp, String dlv, String destin) throws Exception
 	{
 		try
 		{
@@ -86,37 +86,124 @@ public class RenewalStrategyFunctions extends RenewalStrategyObjects
 			element(driver, renewalDesc).sendKeys(description);
 			TimeUnit.SECONDS.sleep(3);
 			element(driver, startDate).clear();
-	        element(driver, startDate).sendKeys(starDate);
-	        element(driver, startDate).clear();
+			TimeUnit.SECONDS.sleep(3);
+			element(driver, startDate).sendKeys(starDate);
+			element(driver, endDate).clear();
+			TimeUnit.SECONDS.sleep(3);
 			element(driver, endDate).sendKeys(enDate);
-			element(driver, startDate).clear();
+			element(driver, expiryDate).clear();
+			TimeUnit.SECONDS.sleep(3);
 			element(driver, expiryDate).sendKeys(expDate);
 			if(act.equals("Yes")||act.equals("yes"))
 			{
-			element(driver, activeCheck).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, activeCheck).click();
 			}
-			element(driver, type).sendKeys(typeRenewal);
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, findDefaultPro).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, findPro).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, selectRPromotion(promotion)).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, selectPro).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, findDefaultOff).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, searchOffer).click();
-			element(driver, selectROffer(offer)).click();
-			TimeUnit.SECONDS.sleep(3);
-			element(driver, selOffer).click();
-			TimeUnit.SECONDS.sleep(3);
+
+			element(driver, selectTypBx).click();
+
+			element(driver, selectType(typeRenewal)).click();
+			if(typeRenewal.equals("CONTINIOUS_AUTHORITY")||typeRenewal.equals("STEPUP")||type.equals("MULTI_STAGE"))
+
+			{
+				TimeUnit.SECONDS.sleep(8);
+
+				element(driver, findDefaultPro).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, findPro).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, selectRPromotion(promotion)).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, selectPro).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, findDefaultOff).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, searchOffer).click();
+				element(driver, selectROffer(offer)).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, selOffer).click();
+				TimeUnit.SECONDS.sleep(3);
+			}
+
+			if(typeRenewal.equals("NON_CONTINIOUS_AUTHORITY")||typeRenewal.equals("STEPUP"))
+			{
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, efforts).click();
+				element(driver, newEffort).click();
+				TimeUnit.SECONDS.sleep(3);
+				System.out.println(whe);
+				element(driver, when).sendKeys(whe);
+				//Select(element(driver, when)).selectByVisibleText(whe);
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, delivType).click();
+				TimeUnit.SECONDS.sleep(3);
+				if(delTyp.equals("LETTER")||delTyp.equals("LETTER"))
+				{
+					TimeUnit.SECONDS.sleep(10);
+					element(driver, next).click();
+				}
+				else
+				{
+					Select(element(driver, delivType)).selectByVisibleText(delTyp);
+					TimeUnit.SECONDS.sleep(10);
+					element(driver, next).click();
+				}
+				
+				
+				element(driver, delive).sendKeys(dlv);
+				TimeUnit.SECONDS.sleep(3);
+				Select(element(driver, destn)).selectByVisibleText(destin);
+				element(driver, next).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, finPromotion).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, effortPro(promotion)).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, next).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, finOffer).click();
+				TimeUnit.SECONDS.sleep(8);
+				element(driver, effortOff(offer)).click();
+				TimeUnit.SECONDS.sleep(3);
+				element(driver, finish).click();
+				TimeUnit.SECONDS.sleep(5);
+			}
+
+			
+			TimeUnit.SECONDS.sleep(5);
 			element(driver, saveButton).click();
+		
 			TimeUnit.SECONDS.sleep(5);
 			element(driver, backButton).click();
-			TimeUnit.SECONDS.sleep(5);
 			
+			TimeUnit.SECONDS.sleep(15);
+		element(driver, homeLink).click();
+			TimeUnit.SECONDS.sleep(5);
+			element(driver, accountAdminLink).click();	
+			TimeUnit.SECONDS.sleep(10);
+			for (String winHandle : driver.getWindowHandles()) 
+			{
+				driver.switchTo().window(winHandle); // switch focus of WebDriver to the next found window handle (that's your newly opened window)
+			}
+			element(driver, manageRenewal).click();
+			TimeUnit.SECONDS.sleep(10);
+			Select(element(driver, clientSelect)).selectByVisibleText(client);
+
+			for (int i = 1; i <= 100; i++)
+			{
+				try
+				{
+					element(driver, brandSelect(brand)).click();
+					TimeUnit.SECONDS.sleep(7);
+					break;
+				}
+
+				catch (Exception e)
+				{
+					element(driver, fastFoward).click();
+				}
+			}	
+			TimeUnit.SECONDS.sleep(8);
 			
 			if(element(driver, findRenewal(""+name+""+" "+dateFolder+"")).isDisplayed())
 			{
@@ -125,18 +212,19 @@ public class RenewalStrategyFunctions extends RenewalStrategyObjects
 
 			else
 			{
-				ATUReports.add("Unable to verify the newly Renewal Startegy", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
+				ATUReports.add("Unable to verify the newly created Renewal Startegy", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 				takeScreenShotOnFailure(driver, testName);
 			}
-			
+
 		}
 
 		catch (Exception e)
 		{
 			ATUReports.add("Unable to create a new schedule", LogAs.FAILED, new CaptureScreen(ScreenshotOf.BROWSER_PAGE));
 			takeScreenShotOnFailure(driver, testName);
+			System.out.println(e);
 		}
 	}
-	
+
 }
 
